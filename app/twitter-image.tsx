@@ -7,8 +7,13 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const photoBuffer = await readFile(
-    join(process.cwd(), "public/photos/DSC00374.jpg")
+  const [photoBuffer, greatVibesBuf] = await Promise.all([
+    readFile(join(process.cwd(), "public/photos/DSC00374.jpg")),
+    readFile(join(process.cwd(), "public/fonts/GreatVibes-Regular.ttf")),
+  ]);
+  const greatVibesFont = greatVibesBuf.buffer.slice(
+    greatVibesBuf.byteOffset,
+    greatVibesBuf.byteOffset + greatVibesBuf.byteLength
   );
   const photoBase64 = `data:image/jpeg;base64,${photoBuffer.toString("base64")}`;
 
@@ -143,20 +148,18 @@ export default async function Image() {
           </p>
 
           {/* Names */}
-          <h1
+          <p
             style={{
-              fontSize: 72,
+              fontSize: 88,
               color: "#D4AF37",
-              fontFamily: "serif",
-              fontStyle: "italic",
+              fontFamily: "Great Vibes",
               fontWeight: 400,
               margin: 0,
               lineHeight: 1.1,
-              textShadow: "0 2px 20px rgba(0,0,0,0.5)",
             }}
           >
             Prana & Ester
-          </h1>
+          </p>
 
           {/* Divider */}
           <div
@@ -208,23 +211,19 @@ export default async function Image() {
           >
             Sabtu, 30 Mei 2026
           </p>
-
-          {/* Venue */}
-          <p
-            style={{
-              fontSize: 14,
-              color: "rgba(212,175,55,0.4)",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              fontFamily: "sans-serif",
-              marginTop: 12,
-            }}
-          >
-            GMS Kelapa Gading, Jakarta
-          </p>
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [
+        {
+          name: "Great Vibes",
+          data: greatVibesFont,
+          style: "normal",
+          weight: 400,
+        },
+      ],
+    }
   );
 }
