@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, createContext, useContext } from "react";
+import { useState, useCallback, useRef, useEffect, createContext, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useSwipeGesture from "../hooks/useSwipeGesture";
 import BottomNav from "./BottomNav";
@@ -19,6 +19,23 @@ import ClosingSlide from "./slides/ClosingSlide";
 
 const TOTAL_SLIDES = 11; // 0-10
 
+const SLIDE_HASH_MAP: Record<string, number> = {
+  opening: 1,
+  groom: 2,
+  bride: 3,
+  verse: 4,
+  event: 5,
+  rsvp: 6,
+  wishes: 7,
+  gift: 8,
+  gallery: 9,
+  closing: 10,
+};
+
+const INDEX_TO_HASH = Object.fromEntries(
+  Object.entries(SLIDE_HASH_MAP).map(([k, v]) => [v, k])
+);
+
 // Context for passing active state to slides
 export const SlideContext = createContext({ isActive: false, slideIndex: 0 });
 export const useSlideContext = () => useContext(SlideContext);
@@ -29,6 +46,15 @@ export default function SlideManager({ guestName }: { guestName: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const isTransitioning = useRef(false);
+  const initialSlide = useRef<number | null>(null);
+
+  // Read hash on mount to determine initial slide after opening
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash && SLIDE_HASH_MAP[hash] !== undefined) {
+      initialSlide.current = SLIDE_HASH_MAP[hash];
+    }
+  }, []);
 
   const goToSlide = useCallback(
     (target: number) => {
@@ -41,6 +67,12 @@ export default function SlideManager({ guestName }: { guestName: string }) {
       setDirection(target > currentSlide ? 1 : -1);
       setCurrentSlide(target);
 
+      // Update URL hash without polluting history
+      const hash = INDEX_TO_HASH[target];
+      if (hash) {
+        window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#${hash}`);
+      }
+
       setTimeout(() => {
         isTransitioning.current = false;
       }, 650);
@@ -50,7 +82,9 @@ export default function SlideManager({ guestName }: { guestName: string }) {
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
-    goToSlide(1);
+    const target = initialSlide.current ?? 1;
+    initialSlide.current = null;
+    goToSlide(target);
   }, [goToSlide]);
 
   const handleNext = useCallback(() => {

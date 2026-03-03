@@ -83,9 +83,11 @@ export default function useSwipeGesture({
     };
   }, [enabled, onNext, onPrev, threshold, velocityThreshold, shouldBlockNavigation]);
 
-  // Wheel events
+  // Wheel events — desktop only (pointer: fine = mouse/trackpad)
   useEffect(() => {
     if (!enabled) return;
+
+    const mql = window.matchMedia("(pointer: fine)");
 
     function handleWheel(e: WheelEvent) {
       const direction = e.deltaY > 0 ? "up" : "down";
@@ -104,9 +106,20 @@ export default function useSwipeGesture({
       }, 80);
     }
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    function updateWheelListener() {
+      if (mql.matches) {
+        window.addEventListener("wheel", handleWheel, { passive: false });
+      } else {
+        window.removeEventListener("wheel", handleWheel);
+      }
+    }
+
+    updateWheelListener();
+    mql.addEventListener("change", updateWheelListener);
+
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      mql.removeEventListener("change", updateWheelListener);
       if (wheelTimer.current) clearTimeout(wheelTimer.current);
     };
   }, [enabled, onNext, onPrev, shouldBlockNavigation]);
