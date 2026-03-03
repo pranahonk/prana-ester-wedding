@@ -168,8 +168,7 @@ export default function WishesSlide() {
           )}
 
           <div
-            className="overflow-y-auto relative slide-scrollable"
-            style={{ maxHeight: 260 }}
+            className="relative sm:overflow-y-auto sm:max-h-[260px] sm:slide-scrollable"
           >
             <div>
               {wishes.length === 0 ? (
