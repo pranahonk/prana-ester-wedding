@@ -44,9 +44,11 @@ export default function useSwipeGesture({
     return false;
   }, []);
 
-  // Touch events
+  // Touch swipe events — desktop only (on mobile, use bottom nav instead)
   useEffect(() => {
     if (!enabled) return;
+
+    const mql = window.matchMedia("(pointer: fine)");
 
     function handleTouchStart(e: TouchEvent) {
       touchStart.current = { y: e.touches[0].clientY, time: Date.now() };
@@ -74,12 +76,23 @@ export default function useSwipeGesture({
       touchStart.current = null;
     }
 
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    function updateTouchListeners() {
+      if (mql.matches) {
+        window.addEventListener("touchstart", handleTouchStart, { passive: true });
+        window.addEventListener("touchend", handleTouchEnd, { passive: true });
+      } else {
+        window.removeEventListener("touchstart", handleTouchStart);
+        window.removeEventListener("touchend", handleTouchEnd);
+      }
+    }
+
+    updateTouchListeners();
+    mql.addEventListener("change", updateTouchListeners);
 
     return () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
+      mql.removeEventListener("change", updateTouchListeners);
     };
   }, [enabled, onNext, onPrev, threshold, velocityThreshold, shouldBlockNavigation]);
 
