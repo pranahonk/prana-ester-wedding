@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
 import Particles from "../Particles";
@@ -19,22 +19,32 @@ function MapPinIcon() {
 }
 
 function TimeUnit({ value, label }: { value: number; label: string }) {
+  const display = String(value).padStart(2, "0");
   return (
     <div className="flex flex-col items-center">
       <div
-        className="relative w-[52px] h-[60px] sm:w-[64px] sm:h-[76px] rounded-lg flex items-center justify-center"
+        className="relative w-[52px] h-[60px] sm:w-[64px] sm:h-[76px] rounded-lg flex items-center justify-center overflow-hidden"
         style={{
           background: "linear-gradient(180deg, rgba(212,175,55,0.08) 0%, rgba(15,29,51,0.5) 100%)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.25), inset 0 1px 0 rgba(212,175,55,0.15)",
         }}
       >
-        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-gold/30" />
-        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-gold/30" />
-        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-gold/20" />
-        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-gold/20" />
-        <span className="font-display text-xl sm:text-3xl font-semibold text-gold-shimmer">
-          {String(value).padStart(2, "0")}
-        </span>
+        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-gold/30 z-10" />
+        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-gold/30 z-10" />
+        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-gold/20 z-10" />
+        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-gold/20 z-10" />
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.span
+            key={display}
+            initial={{ y: "-100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: "100%", opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            className="font-display text-xl sm:text-3xl font-semibold text-gold-shimmer"
+          >
+            {display}
+          </motion.span>
+        </AnimatePresence>
       </div>
       <span className="text-gold/35 text-[7px] sm:text-[9px] tracking-[0.2em] uppercase font-sans mt-2">
         {label}
