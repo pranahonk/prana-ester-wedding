@@ -3,8 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
-// Set to true once you add a music file at public/music/wedding-song.mp3
-const MUSIC_ENABLED = false;
+const MUSIC_ENABLED = true;
 
 export default function MusicPlayer({ shouldPlay }: { shouldPlay: boolean }) {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -13,7 +12,7 @@ export default function MusicPlayer({ shouldPlay }: { shouldPlay: boolean }) {
 
   useEffect(() => {
     if (!MUSIC_ENABLED) return;
-    fetch("/music/wedding-song.mp3", { method: "HEAD" })
+    fetch("/music/yellow-acoustic.mp3", { method: "HEAD" })
       .then((res) => { if (res.ok) setHasMusic(true); })
       .catch(() => {});
   }, []);
@@ -39,7 +38,7 @@ export default function MusicPlayer({ shouldPlay }: { shouldPlay: boolean }) {
   return (
     <>
       <audio ref={audioRef} loop preload="auto">
-        <source src="/music/wedding-song.mp3" type="audio/mpeg" />
+        <source src="/music/yellow-acoustic.mp3" type="audio/mpeg" />
       </audio>
 
       <motion.button

@@ -171,13 +171,6 @@ export default function WishesSlide() {
             className="overflow-y-auto relative slide-scrollable"
             style={{ maxHeight: 260 }}
           >
-            {wishes.length > 0 && (
-              <>
-                <div className="absolute top-0 left-0 right-0 h-6 z-10 pointer-events-none" style={{ background: "linear-gradient(to bottom, #0F1D33, transparent)" }} />
-                <div className="absolute bottom-0 left-0 right-0 h-6 z-10 pointer-events-none" style={{ background: "linear-gradient(to top, #0F1D33, transparent)" }} />
-              </>
-            )}
-
             <div>
               {wishes.length === 0 ? (
                 <p className="text-gold/25 text-center font-serif text-sm py-4">

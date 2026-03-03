@@ -175,8 +175,8 @@ export default function BottomNav({
           }
         `}</style>
         <ul
-          className="nav-list flex items-center list-none m-0 p-0 h-full"
-          style={{ minWidth: "100%", width: "max-content" }}
+          className="nav-list flex items-center justify-center list-none m-0 p-0 h-full"
+          style={{ minWidth: "100%", width: "max-content", margin: "0 auto" }}
         >
         {NAV_ITEMS.map((item, idx) => {
           const isActive = idx === activeIndex;
