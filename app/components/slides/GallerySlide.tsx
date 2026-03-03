@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import SlideWrapper from "./SlideWrapper";
@@ -61,6 +61,32 @@ export default function GallerySlide({
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [selected, onLightboxChange]);
+
+  // Touch swipe left/right for lightbox
+  const touchStartX = useRef<number | null>(null);
+  useEffect(() => {
+    if (selected === null) return;
+    function handleTouchStart(e: TouchEvent) {
+      touchStartX.current = e.touches[0].clientX;
+    }
+    function handleTouchEnd(e: TouchEvent) {
+      if (touchStartX.current === null) return;
+      const deltaX = touchStartX.current - e.changedTouches[0].clientX;
+      touchStartX.current = null;
+      if (Math.abs(deltaX) < 40) return;
+      if (deltaX > 0) {
+        setSelected((p) => (p !== null ? (p + 1) % PHOTOS.length : null));
+      } else {
+        setSelected((p) => (p !== null ? (p - 1 + PHOTOS.length) % PHOTOS.length : null));
+      }
+    }
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [selected]);
 
   return (
     <SlideWrapper
