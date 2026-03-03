@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
@@ -19,12 +19,24 @@ export default function WishesSlide() {
   const [wishes, setWishes] = useState<Wish[]>([]);
   const [form, setForm] = useState({ name: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [sortOrder, setSortOrder] = useState<"desc" | "asc">("desc");
 
+  const sortedWishes = useMemo(() => {
+    const sorted = [...wishes];
+    sorted.sort((a, b) => {
+      const diff = new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+      return sortOrder === "desc" ? -diff : diff;
+    });
+    return sorted;
+  }, [wishes, sortOrder]);
   useEffect(() => {
     fetch("/api/wishes")
       .then((res) => res.json())
-      .then((data) => setWishes(data))
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setWishes(data);
+        }
+      })
       .catch(() => {});
   }, []);
 
@@ -49,18 +61,6 @@ export default function WishesSlide() {
       setStatus("error");
     }
   }
-
-  const handleTouchStart = () => {
-    if (scrollRef.current) {
-      scrollRef.current.style.animationPlayState = "paused";
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (scrollRef.current) {
-      scrollRef.current.style.animationPlayState = "running";
-    }
-  };
 
   return (
     <SlideWrapper
@@ -143,26 +143,48 @@ export default function WishesSlide() {
           </form>
         </SlideReveal>
 
-        {/* Auto-scrolling wishes wall */}
-        {wishes.length > 0 && (
-          <SlideReveal delay={0.2} isActive={isActive}>
-            <div
-              className="overflow-hidden relative"
-              style={{ maxHeight: 260 }}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-              onMouseEnter={handleTouchStart}
-              onMouseLeave={handleTouchEnd}
-            >
-              {/* Fade masks */}
-              <div className="absolute top-0 left-0 right-0 h-6 z-10 pointer-events-none" style={{ background: "linear-gradient(to bottom, #0F1D33, transparent)" }} />
-              <div className="absolute bottom-0 left-0 right-0 h-6 z-10 pointer-events-none" style={{ background: "linear-gradient(to top, #0F1D33, transparent)" }} />
-
-              <div
-                ref={scrollRef}
-                className="wishes-scroll-container"
+        {/* Wishes wall */}
+        <SlideReveal delay={0.2} isActive={isActive}>
+          {wishes.length > 0 && (
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-gold/40 font-sans text-[10px] tracking-[0.2em] uppercase">
+                {wishes.length} Ucapan
+              </p>
+              <button
+                type="button"
+                onClick={() => setSortOrder(sortOrder === "desc" ? "asc" : "desc")}
+                className="flex items-center gap-1.5 text-gold/50 hover:text-gold/80 font-sans text-[10px] tracking-[0.15em] uppercase transition-colors cursor-pointer"
               >
-                {[...wishes, ...wishes].map((wish, idx) => (
+                {sortOrder === "desc" ? "Terbaru" : "Terlama"}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  {sortOrder === "desc" ? (
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                  ) : (
+                    <path d="M12 19V5M5 12l7-7 7 7" />
+                  )}
+                </svg>
+              </button>
+            </div>
+          )}
+
+          <div
+            className="overflow-y-auto relative slide-scrollable"
+            style={{ maxHeight: 260 }}
+          >
+            {wishes.length > 0 && (
+              <>
+                <div className="absolute top-0 left-0 right-0 h-6 z-10 pointer-events-none" style={{ background: "linear-gradient(to bottom, #0F1D33, transparent)" }} />
+                <div className="absolute bottom-0 left-0 right-0 h-6 z-10 pointer-events-none" style={{ background: "linear-gradient(to top, #0F1D33, transparent)" }} />
+              </>
+            )}
+
+            <div>
+              {wishes.length === 0 ? (
+                <p className="text-gold/25 text-center font-serif text-sm py-4">
+                  Belum ada ucapan. Jadilah yang pertama!
+                </p>
+              ) : (
+                sortedWishes.map((wish, idx) => (
                   <div
                     key={`${wish.id ?? wish.name}-${idx}`}
                     className="relative bg-white/[0.04] backdrop-blur-sm p-3 sm:p-4 border border-gold/8 rounded-lg mb-2"
@@ -179,7 +201,7 @@ export default function WishesSlide() {
                         <p className="font-serif text-gold-light/50 text-sm leading-relaxed mt-0.5">
                           {wish.message}
                         </p>
-                        <p className="font-sans text-gold/20 text-[9px] mt-1 tracking-wider">
+                        <p className="font-sans text-gold/50 text-[10px] mt-1.5 tracking-wider">
                           {new Date(wish.created_at).toLocaleDateString("id-ID", {
                             day: "numeric",
                             month: "long",
@@ -189,11 +211,11 @@ export default function WishesSlide() {
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                ))
+              )}
             </div>
-          </SlideReveal>
-        )}
+          </div>
+        </SlideReveal>
       </div>
     </SlideWrapper>
   );

@@ -9,12 +9,12 @@ import { useSlideContext } from "../SlideManager";
 
 export default function RSVPSlide() {
   const { isActive } = useSlideContext();
-  const [form, setForm] = useState({ name: "", attendance: "", guests: "1" });
+  const [form, setForm] = useState({ name: "", phone: "", attendance: "", guests: "1" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name || !form.attendance) return;
+    if (!form.name || !form.phone || !form.attendance) return;
     setStatus("loading");
     try {
       const res = await fetch("/api/rsvp", {
@@ -22,13 +22,14 @@ export default function RSVPSlide() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name,
+          phone: form.phone,
           attendance: form.attendance,
           guests: parseInt(form.guests),
         }),
       });
       if (res.ok) {
         setStatus("success");
-        setForm({ name: "", attendance: "", guests: "1" });
+        setForm({ name: "", phone: "", attendance: "", guests: "1" });
       } else setStatus("error");
     } catch {
       setStatus("error");
@@ -103,6 +104,20 @@ export default function RSVPSlide() {
 
               <div>
                 <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
+                  No. WhatsApp
+                </label>
+                <input
+                  type="tel"
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  className="w-full bg-white/[0.03] border border-gold/15 rounded-lg text-gold-light px-4 py-3 font-serif text-base focus:border-gold/40 focus:outline-none focus:bg-white/[0.05] transition-all placeholder:text-gold-light/20"
+                  placeholder="08xxxxxxxxxx"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
                   Kehadiran
                 </label>
                 <div className="flex gap-2">
@@ -152,7 +167,7 @@ export default function RSVPSlide() {
 
               <motion.button
                 type="submit"
-                disabled={status === "loading" || !form.name || !form.attendance}
+                disabled={status === "loading" || !form.name || !form.phone || !form.attendance}
                 whileTap={{ scale: 0.98 }}
                 className="w-full py-3 bg-gradient-to-r from-gold to-gold-bright rounded-lg text-navy-deep font-sans text-[10px] sm:text-[11px] tracking-[0.3em] uppercase font-medium hover:shadow-[0_4px_20px_rgba(212,175,55,0.3)] transition-all duration-500 disabled:opacity-40 cursor-pointer"
               >

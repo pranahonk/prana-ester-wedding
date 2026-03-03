@@ -167,7 +167,6 @@ export default function GallerySlide({
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="relative w-full h-full flex items-center justify-center px-14 sm:px-20 py-16"
-              onClick={(e) => e.stopPropagation()}
             >
               <Image
                 src={PHOTOS[selected].src}

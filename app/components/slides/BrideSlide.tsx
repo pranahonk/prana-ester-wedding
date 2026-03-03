@@ -53,7 +53,7 @@ export default function BrideSlide() {
               }}
             >
               <Image
-                src="/photos/DSC00232.jpg"
+                src="/photos/DSC00220.jpg"
                 alt="Ester Siwi Prihardani"
                 fill
                 className="object-cover object-[center_15%]"

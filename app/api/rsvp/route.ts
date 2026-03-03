@@ -15,15 +15,15 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { name, attendance, guests } = body;
+  const { name, phone, attendance, guests } = body;
 
-  if (!name || !attendance) {
-    return NextResponse.json({ error: "Name and attendance required" }, { status: 400 });
+  if (!name || !phone || !attendance) {
+    return NextResponse.json({ error: "Name, phone, and attendance required" }, { status: 400 });
   }
 
   const { data, error } = await supabase
     .from("rsvp")
-    .insert({ name, attendance, guests: guests || 1 })
+    .insert({ name, phone: phone || null, attendance, guests: guests || 1 })
     .select()
     .single();
 

@@ -61,7 +61,7 @@ export default function GreetingSlide() {
         </SlideReveal>
 
         <SlideReveal delay={0.15} isActive={isActive}>
-          <h1 className="font-script text-[clamp(3.5rem,12vw,9rem)] text-gold-shimmer leading-[1.1] whitespace-nowrap">
+          <h1 className="font-script text-[clamp(3.5rem,12vw,9rem)] text-gold-shimmer leading-[1.3] whitespace-nowrap overflow-visible">
             Prana
           </h1>
         </SlideReveal>
@@ -75,7 +75,7 @@ export default function GreetingSlide() {
         </SlideReveal>
 
         <SlideReveal delay={0.35} isActive={isActive}>
-          <h1 className="font-script text-[clamp(3.5rem,12vw,9rem)] text-gold-shimmer leading-[1.1] whitespace-nowrap">
+          <h1 className="font-script text-[clamp(3.5rem,12vw,9rem)] text-gold-shimmer leading-[1.3] whitespace-nowrap overflow-visible">
             Ester
           </h1>
         </SlideReveal>

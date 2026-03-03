@@ -147,7 +147,7 @@ export default function EventSlide() {
             <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">Pemberkatan Nikah</h3>
             <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">10:00 WIB</p>
             <p className="font-display text-sm sm:text-base text-gold-light font-medium">GMS Kelapa Gading</p>
-            <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">Jl. Bulevar Kelapa Gading, Jakarta Utara</p>
+            <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">Kelapa Gading, Jakarta Utara</p>
             <motion.a
               href="https://maps.google.com/?q=GMS+Kelapa+Gading+Jakarta"
               target="_blank"

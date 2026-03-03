@@ -122,7 +122,7 @@ export default function CoverSlide({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1 }}
-          className="font-script text-5xl sm:text-7xl md:text-8xl text-gold-shimmer leading-[1.1] whitespace-nowrap pt-2"
+          className="font-script text-5xl sm:text-7xl md:text-8xl text-gold-shimmer leading-[1.3] whitespace-nowrap overflow-visible"
         >
           Prana
         </motion.h1>
@@ -142,7 +142,7 @@ export default function CoverSlide({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 1 }}
-          className="font-script text-5xl sm:text-7xl md:text-8xl text-gold-shimmer leading-[1.1] whitespace-nowrap pt-2"
+          className="font-script text-5xl sm:text-7xl md:text-8xl text-gold-shimmer leading-[1.3] whitespace-nowrap overflow-visible"
         >
           Ester
         </motion.h1>

@@ -21,14 +21,23 @@ export default function useSwipeGesture({
   const wheelAccum = useRef(0);
   const wheelTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const isScrollable = useCallback((el: EventTarget | null): boolean => {
+  // Check if the swipe should be consumed by a scrollable container
+  // direction: "up" = user swiped up (wants next), "down" = user swiped down (wants prev)
+  const shouldBlockNavigation = useCallback((el: EventTarget | null, direction: "up" | "down"): boolean => {
     let node = el as HTMLElement | null;
     while (node && node !== document.body) {
       if (node.classList.contains("slide-scrollable")) {
         const { scrollTop, scrollHeight, clientHeight } = node;
-        const atTop = scrollTop <= 0;
+        const hasScroll = scrollHeight > clientHeight + 1;
+        if (!hasScroll) {
+          node = node.parentElement;
+          continue;
+        }
+        const atTop = scrollTop <= 1;
         const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
-        if (!atTop || !atBottom) return true;
+        // Block navigation if there's room to scroll in the swipe direction
+        if (direction === "up" && !atBottom) return true;
+        if (direction === "down" && !atTop) return true;
       }
       node = node.parentElement;
     }
@@ -45,12 +54,15 @@ export default function useSwipeGesture({
 
     function handleTouchEnd(e: TouchEvent) {
       if (!touchStart.current) return;
-      if (isScrollable(e.target)) {
+
+      const deltaY = touchStart.current.y - e.changedTouches[0].clientY;
+      const direction = deltaY > 0 ? "up" : "down";
+
+      if (shouldBlockNavigation(e.target, direction)) {
         touchStart.current = null;
         return;
       }
 
-      const deltaY = touchStart.current.y - e.changedTouches[0].clientY;
       const deltaTime = Date.now() - touchStart.current.time;
       const velocity = Math.abs(deltaY) / deltaTime;
 
@@ -69,14 +81,15 @@ export default function useSwipeGesture({
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [enabled, onNext, onPrev, threshold, velocityThreshold, isScrollable]);
+  }, [enabled, onNext, onPrev, threshold, velocityThreshold, shouldBlockNavigation]);
 
   // Wheel events
   useEffect(() => {
     if (!enabled) return;
 
     function handleWheel(e: WheelEvent) {
-      if (isScrollable(e.target)) return;
+      const direction = e.deltaY > 0 ? "up" : "down";
+      if (shouldBlockNavigation(e.target, direction)) return;
       e.preventDefault();
 
       wheelAccum.current += e.deltaY;
@@ -96,7 +109,7 @@ export default function useSwipeGesture({
       window.removeEventListener("wheel", handleWheel);
       if (wheelTimer.current) clearTimeout(wheelTimer.current);
     };
-  }, [enabled, onNext, onPrev, isScrollable]);
+  }, [enabled, onNext, onPrev, shouldBlockNavigation]);
 
   // Keyboard events
   useEffect(() => {

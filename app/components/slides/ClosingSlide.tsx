@@ -104,13 +104,18 @@ export default function ClosingSlide() {
 
         {/* Verse */}
         <SlideReveal delay={0.4} isActive={isActive}>
-          <div className="mt-10 sm:mt-14 max-w-[280px] sm:max-w-sm mx-auto">
-            <p className="font-serif text-gold-light/30 text-[13px] sm:text-base italic leading-[1.9]">
+          <div className="mt-10 sm:mt-14 max-w-[300px] sm:max-w-sm mx-auto relative py-6 px-5 sm:px-6 border-t border-b border-gold/15">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-navy-deep px-3">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-gold/40">
+                <path d="M12 2L14.5 9.5H22L16 14L18.5 21.5L12 17L5.5 21.5L8 14L2 9.5H9.5L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <p className="font-serif text-gold-light/60 text-[13px] sm:text-base italic leading-[2]">
               &ldquo;Dan sekarang tinggal tiga hal ini, yaitu iman, pengharapan dan kasih.
               <br />
               Dan yang paling besar di antaranya ialah kasih.&rdquo;
             </p>
-            <p className="font-display text-gold/20 text-[9px] sm:text-[10px] tracking-[0.35em] mt-3 uppercase">
+            <p className="font-display text-gold/40 text-[10px] sm:text-[11px] tracking-[0.3em] mt-4 uppercase">
               1 Korintus 13 : 13
             </p>
           </div>
