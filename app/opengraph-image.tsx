@@ -136,12 +136,13 @@ export default async function Image() {
           {/* Top label */}
           <p
             style={{
-              fontSize: 16,
-              color: "rgba(212,175,55,0.6)",
-              letterSpacing: "0.4em",
+              fontSize: 20,
+              color: "rgba(212,175,55,0.7)",
+              letterSpacing: "0.35em",
               textTransform: "uppercase",
-              fontFamily: "serif",
-              marginBottom: 8,
+              fontFamily: "sans-serif",
+              fontWeight: 400,
+              marginBottom: 12,
             }}
           >
             The Wedding of
@@ -204,8 +205,9 @@ export default async function Image() {
             style={{
               fontSize: 22,
               color: "rgba(212,175,55,0.7)",
-              letterSpacing: "0.15em",
-              fontFamily: "serif",
+              letterSpacing: "0.2em",
+              fontFamily: "sans-serif",
+              fontWeight: 400,
               margin: 0,
             }}
           >
