@@ -47,21 +47,12 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     siteName: "Undangan Pernikahan Prana & Ester",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Undangan Pernikahan Prana & Ester - 30 Mei 2026",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Undangan Pernikahan Prana & Ester",
     description:
       "Kami mengundang Anda untuk hadir dan memberikan doa restu pada pernikahan kami — 30 Mei 2026",
-    images: ["/og-image.jpg"],
   },
   other: {
     "apple-mobile-web-app-capable": "yes",
