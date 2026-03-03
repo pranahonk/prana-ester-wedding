@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.idea/
+
+# data (RSVP & wishes submissions)
+/data/*.json
+
+# processed photos (regenerate with scripts/process-photos.mjs)
+/public/photos/*.webp
+
+# music files
+/public/music/*.mp3
+/public/music/*.wav
+/public/music/*.ogg
+
+# gitkeep placeholders
+.gitkeep
