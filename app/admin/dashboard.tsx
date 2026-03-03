@@ -59,9 +59,9 @@ export default function Dashboard() {
     let result = [...rsvps];
 
     if (filter === "hadir") {
-      result = result.filter((r) => r.attendance === "hadir");
+      result = result.filter((r) => r.attendance === "yes");
     } else if (filter === "tidak") {
-      result = result.filter((r) => r.attendance === "tidak hadir");
+      result = result.filter((r) => r.attendance === "no");
     }
 
     if (search) {
@@ -92,10 +92,10 @@ export default function Dashboard() {
 
   const stats = useMemo(() => {
     const total = rsvps.length;
-    const confirmed = rsvps.filter((r) => r.attendance === "hadir").length;
-    const declined = rsvps.filter((r) => r.attendance === "tidak hadir").length;
+    const confirmed = rsvps.filter((r) => r.attendance === "yes").length;
+    const declined = rsvps.filter((r) => r.attendance === "no").length;
     const totalGuests = rsvps
-      .filter((r) => r.attendance === "hadir")
+      .filter((r) => r.attendance === "yes")
       .reduce((sum, r) => sum + r.guests, 0);
     return { total, confirmed, declined, totalGuests };
   }, [rsvps]);
@@ -206,12 +206,12 @@ export default function Dashboard() {
                     <td className="px-4 py-3">
                       <span
                         className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
-                          rsvp.attendance === "hadir"
+                          rsvp.attendance === "yes"
                             ? "bg-green-100 text-green-700"
                             : "bg-red-100 text-red-700"
                         }`}
                       >
-                        {rsvp.attendance === "hadir" ? "Hadir" : "Tidak Hadir"}
+                        {rsvp.attendance === "yes" ? "Hadir" : "Tidak Hadir"}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-gray-600">{rsvp.guests}</td>

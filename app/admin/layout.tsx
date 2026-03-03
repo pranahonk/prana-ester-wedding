@@ -4,8 +4,11 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-gray-50 font-sans" style={{ overflow: "auto", position: "static" }}>
-      {children}
-    </div>
+    <>
+      <style>{`body { overflow: auto !important; position: static !important; inset: unset !important; background: #f9fafb !important; }`}</style>
+      <div className="min-h-screen bg-gray-50 font-sans">
+        {children}
+      </div>
+    </>
   );
 }
