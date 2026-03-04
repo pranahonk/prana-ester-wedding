@@ -35,7 +35,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://pranaester.com"
+    process.env.NEXT_PUBLIC_BASE_URL || "https://www.pranaester.com"
   ),
   title: "Undangan Pernikahan Prana & Ester - 30 Mei 2026",
   description:
