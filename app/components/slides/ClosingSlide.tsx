@@ -75,7 +75,7 @@ export default function ClosingSlide() {
 
         {/* Names */}
         <SlideReveal delay={0.2} isActive={isActive}>
-          <h2 className="font-script text-[3.2rem] sm:text-6xl md:text-7xl text-gold-shimmer leading-[1.1] mb-1">
+          <h2 className="font-script text-[3.2rem] sm:text-6xl md:text-7xl text-gold-shimmer leading-[1.3] mb-1 overflow-visible">
             Prana
           </h2>
           <div className="flex items-center justify-center gap-3 my-1.5 sm:my-2">
@@ -83,7 +83,7 @@ export default function ClosingSlide() {
             <span className="font-script text-gold/45 text-lg sm:text-xl">&amp;</span>
             <div className="w-10 sm:w-14 h-px bg-gradient-to-l from-transparent to-gold/25" />
           </div>
-          <h2 className="font-script text-[3.2rem] sm:text-6xl md:text-7xl text-gold-shimmer leading-[1.1]">
+          <h2 className="font-script text-[3.2rem] sm:text-6xl md:text-7xl text-gold-shimmer leading-[1.3] overflow-visible">
             Ester
           </h2>
         </SlideReveal>
