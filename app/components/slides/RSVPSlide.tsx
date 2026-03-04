@@ -155,7 +155,7 @@ export default function RSVPSlide() {
                     <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
                       Acara yang Dihadiri
                     </label>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap">
                       {[
                         { value: "both", label: "Pemberkatan + Resepsi" },
                         { value: "reception", label: "Resepsi Saja" },
@@ -165,7 +165,7 @@ export default function RSVPSlide() {
                           type="button"
                           onClick={() => setForm({ ...form, eventType: opt.value })}
                           whileTap={{ scale: 0.98 }}
-                          className={`flex-1 py-3 border rounded-lg text-[10px] sm:text-[11px] font-sans tracking-[0.2em] uppercase transition-all duration-500 cursor-pointer ${
+                          className={`px-4 py-2.5 border rounded-lg text-[10px] sm:text-[11px] font-sans tracking-[0.15em] uppercase transition-all duration-500 cursor-pointer ${
                             form.eventType === opt.value
                               ? "border-gold bg-gold/15 text-gold"
                               : "border-gold/15 text-gold/40 hover:border-gold/30 hover:text-gold/60"
