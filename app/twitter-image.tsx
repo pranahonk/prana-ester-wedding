@@ -136,12 +136,12 @@ export default async function Image() {
           {/* Top label */}
           <p
             style={{
-              fontSize: 20,
-              color: "rgba(212,175,55,0.7)",
+              fontSize: 24,
+              color: "rgba(255,255,255,0.85)",
               letterSpacing: "0.35em",
               textTransform: "uppercase",
               fontFamily: "sans-serif",
-              fontWeight: 400,
+              fontWeight: 600,
               marginBottom: 12,
             }}
           >
@@ -203,11 +203,11 @@ export default async function Image() {
           {/* Date */}
           <p
             style={{
-              fontSize: 22,
-              color: "rgba(212,175,55,0.7)",
+              fontSize: 24,
+              color: "rgba(255,255,255,0.8)",
               letterSpacing: "0.2em",
               fontFamily: "sans-serif",
-              fontWeight: 400,
+              fontWeight: 500,
               margin: 0,
             }}
           >
