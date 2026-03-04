@@ -50,7 +50,6 @@ next-env.d.ts
 /public/photos/*.webp
 
 # music files
-/public/music/*.mp3
 /public/music/*.wav
 /public/music/*.ogg
 
