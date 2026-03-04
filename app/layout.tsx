@@ -44,15 +44,33 @@ export const metadata: Metadata = {
     title: "Undangan Pernikahan Prana & Ester",
     description:
       "Kami mengundang Anda untuk hadir dan memberikan doa restu pada pernikahan kami — 30 Mei 2026, GMS Kelapa Gading, Jakarta",
+    url: "https://www.pranaester.com",
     type: "website",
     locale: "id_ID",
     siteName: "Undangan Pernikahan Prana & Ester",
+    images: [
+      {
+        url: "https://www.pranaester.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Undangan Pernikahan Prana & Ester - 30 Mei 2026",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Undangan Pernikahan Prana & Ester",
     description:
       "Kami mengundang Anda untuk hadir dan memberikan doa restu pada pernikahan kami — 30 Mei 2026",
+    images: [
+      {
+        url: "https://www.pranaester.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Undangan Pernikahan Prana & Ester - 30 Mei 2026",
+      },
+    ],
   },
   other: {
     "apple-mobile-web-app-capable": "yes",
