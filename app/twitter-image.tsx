@@ -7,13 +7,18 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const [photoBuffer, greatVibesBuf] = await Promise.all([
+  const [photoBuffer, greatVibesBuf, cormorantBuf] = await Promise.all([
     readFile(join(process.cwd(), "public/photos/DSC00374.jpg")),
     readFile(join(process.cwd(), "public/fonts/GreatVibes-Regular.ttf")),
+    readFile(join(process.cwd(), "public/fonts/Cormorant-Medium.ttf")),
   ]);
   const greatVibesFont = greatVibesBuf.buffer.slice(
     greatVibesBuf.byteOffset,
     greatVibesBuf.byteOffset + greatVibesBuf.byteLength
+  );
+  const cormorantFont = cormorantBuf.buffer.slice(
+    cormorantBuf.byteOffset,
+    cormorantBuf.byteOffset + cormorantBuf.byteLength
   );
   const photoBase64 = `data:image/jpeg;base64,${photoBuffer.toString("base64")}`;
 
@@ -136,12 +141,12 @@ export default async function Image() {
           {/* Top label */}
           <p
             style={{
-              fontSize: 24,
+              fontSize: 26,
               color: "rgba(255,255,255,0.85)",
-              letterSpacing: "0.35em",
+              letterSpacing: "0.3em",
               textTransform: "uppercase",
-              fontFamily: "sans-serif",
-              fontWeight: 600,
+              fontFamily: "Cormorant",
+              fontWeight: 500,
               marginBottom: 12,
             }}
           >
@@ -203,10 +208,10 @@ export default async function Image() {
           {/* Date */}
           <p
             style={{
-              fontSize: 24,
+              fontSize: 26,
               color: "rgba(255,255,255,0.8)",
-              letterSpacing: "0.2em",
-              fontFamily: "sans-serif",
+              letterSpacing: "0.15em",
+              fontFamily: "Cormorant",
               fontWeight: 500,
               margin: 0,
             }}
@@ -224,6 +229,12 @@ export default async function Image() {
           data: greatVibesFont,
           style: "normal",
           weight: 400,
+        },
+        {
+          name: "Cormorant",
+          data: cormorantFont,
+          style: "normal",
+          weight: 500,
         },
       ],
     }
