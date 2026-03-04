@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Undangan Pernikahan Prana & Ester",
     description:
-      "Kami mengundang Anda untuk hadir dan memberikan doa restu pada pernikahan kami — 30 Mei 2026, GMS Kelapa Gading, Jakarta",
+      "Kami mengundang Anda untuk hadir dan memberikan doa restu pada pernikahan kami — 30 Mei 2026",
     url: "https://www.pranaester.com",
     type: "website",
     locale: "id_ID",
