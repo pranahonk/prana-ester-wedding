@@ -84,8 +84,22 @@ export default function SlideManager({ guestName }: { guestName: string }) {
     setIsOpen(true);
     const target = initialSlide.current ?? 1;
     initialSlide.current = null;
-    goToSlide(target);
-  }, [goToSlide]);
+
+    // Directly set slide state — can't use goToSlide here because
+    // isOpen hasn't updated yet in the closure and the guard blocks it
+    isTransitioning.current = true;
+    setDirection(1);
+    setCurrentSlide(target);
+
+    const hash = INDEX_TO_HASH[target];
+    if (hash) {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#${hash}`);
+    }
+
+    setTimeout(() => {
+      isTransitioning.current = false;
+    }, 650);
+  }, []);
 
   const handleNext = useCallback(() => {
     goToSlide(currentSlide + 1);
