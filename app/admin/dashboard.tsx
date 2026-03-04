@@ -5,6 +5,7 @@ import { useEffect, useState, useMemo } from "react";
 interface RSVP {
   id: number;
   name: string;
+  event_type: string | null;
   phone: string | null;
   attendance: string;
   guests: number;
@@ -18,7 +19,7 @@ interface Wish {
   created_at: string;
 }
 
-type SortField = "name" | "attendance" | "guests" | "created_at";
+type SortField = "name" | "event_type" | "attendance" | "guests" | "created_at";
 type SortDir = "asc" | "desc";
 
 export default function Dashboard() {
@@ -77,6 +78,8 @@ export default function Dashboard() {
       let cmp = 0;
       if (sortField === "name") {
         cmp = a.name.localeCompare(b.name);
+      } else if (sortField === "event_type") {
+        cmp = (a.event_type || "").localeCompare(b.event_type || "");
       } else if (sortField === "attendance") {
         cmp = a.attendance.localeCompare(b.attendance);
       } else if (sortField === "guests") {
@@ -172,6 +175,12 @@ export default function Dashboard() {
                 <th className="px-4 py-3 font-medium">Phone</th>
                 <th
                   className="px-4 py-3 font-medium cursor-pointer hover:text-gray-900 select-none"
+                  onClick={() => handleSort("event_type")}
+                >
+                  Acara <SortIcon field="event_type" />
+                </th>
+                <th
+                  className="px-4 py-3 font-medium cursor-pointer hover:text-gray-900 select-none"
                   onClick={() => handleSort("attendance")}
                 >
                   Attendance <SortIcon field="attendance" />
@@ -193,7 +202,7 @@ export default function Dashboard() {
             <tbody className="divide-y divide-gray-100">
               {filteredRsvps.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-8 text-center text-gray-400">
+                  <td colSpan={7} className="px-4 py-8 text-center text-gray-400">
                     No RSVPs found
                   </td>
                 </tr>
@@ -203,6 +212,23 @@ export default function Dashboard() {
                     <td className="px-4 py-3 text-gray-400">{i + 1}</td>
                     <td className="px-4 py-3 font-medium text-gray-900">{rsvp.name}</td>
                     <td className="px-4 py-3 text-gray-600">{rsvp.phone || "-"}</td>
+                    <td className="px-4 py-3">
+                      <span
+                        className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
+                          rsvp.event_type === "both"
+                            ? "bg-blue-100 text-blue-700"
+                            : rsvp.event_type === "reception"
+                            ? "bg-amber-100 text-amber-700"
+                            : "bg-gray-100 text-gray-500"
+                        }`}
+                      >
+                        {rsvp.event_type === "both"
+                          ? "Pemberkatan + Resepsi"
+                          : rsvp.event_type === "reception"
+                          ? "Resepsi Saja"
+                          : "-"}
+                      </span>
+                    </td>
                     <td className="px-4 py-3">
                       <span
                         className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${

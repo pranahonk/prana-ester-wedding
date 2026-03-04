@@ -9,12 +9,13 @@ import { useSlideContext } from "../SlideManager";
 
 export default function RSVPSlide() {
   const { isActive } = useSlideContext();
-  const [form, setForm] = useState({ name: "", phone: "", attendance: "", guests: "1" });
+  const [form, setForm] = useState({ name: "", eventType: "", phone: "", attendance: "", guests: "1" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name || !form.phone || !form.attendance) return;
+    if (form.attendance === "yes" && !form.eventType) return;
     setStatus("loading");
     try {
       const res = await fetch("/api/rsvp", {
@@ -22,6 +23,7 @@ export default function RSVPSlide() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name,
+          event_type: form.eventType,
           phone: form.phone,
           attendance: form.attendance,
           guests: parseInt(form.guests),
@@ -29,7 +31,7 @@ export default function RSVPSlide() {
       });
       if (res.ok) {
         setStatus("success");
-        setForm({ name: "", phone: "", attendance: "", guests: "1" });
+        setForm({ name: "", eventType: "", phone: "", attendance: "", guests: "1" });
       } else setStatus("error");
     } catch {
       setStatus("error");
@@ -147,27 +149,56 @@ export default function RSVPSlide() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
+                  className="space-y-5"
                 >
-                  <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
-                    Jumlah Tamu
-                  </label>
-                  <select
-                    value={form.guests}
-                    onChange={(e) => setForm({ ...form, guests: e.target.value })}
-                    className="w-full bg-white/[0.03] border border-gold/15 rounded-lg text-gold-light px-4 py-3 font-serif text-base focus:border-gold/40 focus:outline-none transition-all"
-                  >
-                    {[1, 2, 3, 4, 5].map((n) => (
-                      <option key={n} value={n} className="bg-navy-deep text-white">
-                        {n} orang
-                      </option>
-                    ))}
-                  </select>
+                  <div>
+                    <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
+                      Acara yang Dihadiri
+                    </label>
+                    <div className="flex gap-2">
+                      {[
+                        { value: "both", label: "Pemberkatan + Resepsi" },
+                        { value: "reception", label: "Resepsi Saja" },
+                      ].map((opt) => (
+                        <motion.button
+                          key={opt.value}
+                          type="button"
+                          onClick={() => setForm({ ...form, eventType: opt.value })}
+                          whileTap={{ scale: 0.98 }}
+                          className={`flex-1 py-3 border rounded-lg text-[10px] sm:text-[11px] font-sans tracking-[0.2em] uppercase transition-all duration-500 cursor-pointer ${
+                            form.eventType === opt.value
+                              ? "border-gold bg-gold/15 text-gold"
+                              : "border-gold/15 text-gold/40 hover:border-gold/30 hover:text-gold/60"
+                          }`}
+                        >
+                          {opt.label}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
+                      Jumlah Tamu
+                    </label>
+                    <select
+                      value={form.guests}
+                      onChange={(e) => setForm({ ...form, guests: e.target.value })}
+                      className="w-full bg-white/[0.03] border border-gold/15 rounded-lg text-gold-light px-4 py-3 font-serif text-base focus:border-gold/40 focus:outline-none transition-all"
+                    >
+                      {[1, 2, 3, 4, 5].map((n) => (
+                        <option key={n} value={n} className="bg-navy-deep text-white">
+                          {n} orang
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </motion.div>
               )}
 
               <motion.button
                 type="submit"
-                disabled={status === "loading" || !form.name || !form.phone || !form.attendance}
+                disabled={status === "loading" || !form.name || !form.phone || !form.attendance || (form.attendance === "yes" && !form.eventType)}
                 whileTap={{ scale: 0.98 }}
                 className="w-full py-3 bg-gradient-to-r from-gold to-gold-bright rounded-lg text-navy-deep font-sans text-[10px] sm:text-[11px] tracking-[0.3em] uppercase font-medium hover:shadow-[0_4px_20px_rgba(212,175,55,0.3)] transition-all duration-500 disabled:opacity-40 cursor-pointer"
               >

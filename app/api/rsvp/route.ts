@@ -15,7 +15,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { name, phone, attendance, guests } = body;
+  const { name, event_type, phone, attendance, guests } = body;
 
   if (!name || !phone || !attendance) {
     return NextResponse.json({ error: "Name, phone, and attendance required" }, { status: 400 });
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
   const { data, error } = await supabase
     .from("rsvp")
-    .insert({ name, phone: phone || null, attendance, guests: guests || 1 })
+    .insert({ name, event_type: event_type || null, phone: phone || null, attendance, guests: guests || 1 })
     .select()
     .single();
 

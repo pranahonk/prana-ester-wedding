@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Undangan Pernikahan Prana & Ester",
     description:
-      "Kami mengundang Anda untuk hadir dan memberikan doa restu pada pernikahan kami — 30 Mei 2026",
+      "Kami mengundang Anda untuk hadir dan memberikan doa restu pada pernikahan kami — 30 Mei 2026, GMS Kelapa Gading, Jakarta",
     images: [
       {
         url: "https://www.pranaester.com/og-image.jpg",
