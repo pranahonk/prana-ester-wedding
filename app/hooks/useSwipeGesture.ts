@@ -44,11 +44,9 @@ export default function useSwipeGesture({
     return false;
   }, []);
 
-  // Touch swipe events — desktop only (on mobile, use bottom nav instead)
+  // Touch swipe events — works on both mobile and desktop
   useEffect(() => {
     if (!enabled) return;
-
-    const mql = window.matchMedia("(pointer: fine)");
 
     function handleTouchStart(e: TouchEvent) {
       touchStart.current = { y: e.touches[0].clientY, time: Date.now() };
@@ -76,23 +74,12 @@ export default function useSwipeGesture({
       touchStart.current = null;
     }
 
-    function updateTouchListeners() {
-      if (mql.matches) {
-        window.addEventListener("touchstart", handleTouchStart, { passive: true });
-        window.addEventListener("touchend", handleTouchEnd, { passive: true });
-      } else {
-        window.removeEventListener("touchstart", handleTouchStart);
-        window.removeEventListener("touchend", handleTouchEnd);
-      }
-    }
-
-    updateTouchListeners();
-    mql.addEventListener("change", updateTouchListeners);
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
-      mql.removeEventListener("change", updateTouchListeners);
     };
   }, [enabled, onNext, onPrev, threshold, velocityThreshold, shouldBlockNavigation]);
 

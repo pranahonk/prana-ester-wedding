@@ -204,10 +204,10 @@ export default function EventSlide() {
             </svg>
             <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">Resepsi</h3>
             <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">13:00 WIB</p>
-            <p className="font-display text-sm sm:text-base text-gold-light font-medium">Sandjaja Seafood & Ayam Bakar</p>
+            <p className="font-display text-sm sm:text-base text-gold-light font-medium">Roemah Kopi Sandjaja</p>
             <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">Kelapa Gading, Jakarta Utara</p>
             <motion.a
-              href="https://maps.google.com/?q=Sandjaja+Seafood+Kelapa+Gading"
+              href="https://maps.app.goo.gl/hqueMQCEknq6c1RN8"
               target="_blank"
               rel="noopener noreferrer"
               whileTap={{ scale: 0.97 }}
@@ -217,7 +217,7 @@ export default function EventSlide() {
             </motion.a>
             <div className="mt-4 border border-gold/10 overflow-hidden rounded-lg">
               <iframe
-                src="https://maps.google.com/maps?q=Sandjaja+Seafood+Kelapa+Gading&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Roemah+Kopi+Sandjaja+Kelapa+Gading&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="150"
                 style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2)" }}
