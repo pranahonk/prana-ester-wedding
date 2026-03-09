@@ -144,39 +144,39 @@ export default function EventSlide() {
           </div>
         </SlideReveal>
 
-        {/* Pemberkatan section */}
+        {/* Resepsi section */}
         <SlideReveal delay={0.3} isActive={isActive}>
           <div className="text-center mb-6 sm:mb-8">
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none" className="text-gold/50 mx-auto mb-3">
-              <rect x="14.5" y="1" width="3" height="8" rx="0.5" fill="currentColor" opacity="0.7" />
-              <rect x="12" y="3.5" width="8" height="3" rx="0.5" fill="currentColor" opacity="0.7" />
-              <path d="M4 18 L16 9 L28 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
-              <rect x="6" y="18" width="20" height="12" rx="0.5" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
-              <path d="M13 30 L13 23 Q16 20 19 23 L19 30" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+              <path d="M10 6 L13 18 L11 20 L19 20 L17 18 L20 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+              <line x1="11" y1="20" x2="11" y2="26" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
+              <line x1="19" y1="20" x2="19" y2="26" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
+              <line x1="8" y1="26" x2="22" y2="26" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
+              <circle cx="24" cy="8" r="1" fill="currentColor" opacity="0.4" />
+              <circle cx="7" cy="10" r="0.8" fill="currentColor" opacity="0.3" />
             </svg>
-            <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">Pemberkatan Nikah</h3>
-            <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">10:00 WIB</p>
-            <p className="font-display text-sm sm:text-base text-gold-light font-medium">GMS Kelapa Gading</p>
+            <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">Resepsi</h3>
+            <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">13:00 WIB</p>
+            <p className="font-display text-sm sm:text-base text-gold-light font-medium">Roemah Kopi Sandjaja</p>
             <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">Kelapa Gading, Jakarta Utara</p>
-            <motion.a
-              href="https://maps.google.com/?q=GMS+Kelapa+Gading+Jakarta"
+            <a
+              href="https://maps.app.goo.gl/hqueMQCEknq6c1RN8"
               target="_blank"
               rel="noopener noreferrer"
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-1.5 mt-3 px-4 py-1.5 border border-gold/20 rounded-lg text-gold text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-sans hover:bg-gold/10 transition-all"
+              className="inline-flex items-center gap-1.5 mt-3 px-4 py-1.5 border border-gold/20 rounded-lg text-gold text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-sans hover:bg-gold/10 active:scale-[0.97] transition-all"
             >
               <MapPinIcon /> Lihat Lokasi
-            </motion.a>
+            </a>
             <div className="mt-4 border border-gold/10 overflow-hidden rounded-lg">
               <iframe
-                src="https://maps.google.com/maps?q=GMS+Kelapa+Gading+Jakarta&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Roemah+Kopi+Sandjaja+Kelapa+Gading&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="150"
                 style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2)" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Lokasi Pemberkatan Nikah"
+                title="Lokasi Resepsi"
               />
             </div>
           </div>
@@ -191,40 +191,38 @@ export default function EventSlide() {
           </div>
         </SlideReveal>
 
-        {/* Resepsi section */}
+        {/* Pemberkatan section */}
         <SlideReveal delay={0.5} isActive={isActive}>
           <div className="text-center">
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none" className="text-gold/50 mx-auto mb-3">
-              <path d="M10 6 L13 18 L11 20 L19 20 L17 18 L20 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
-              <line x1="11" y1="20" x2="11" y2="26" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
-              <line x1="19" y1="20" x2="19" y2="26" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
-              <line x1="8" y1="26" x2="22" y2="26" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
-              <circle cx="24" cy="8" r="1" fill="currentColor" opacity="0.4" />
-              <circle cx="7" cy="10" r="0.8" fill="currentColor" opacity="0.3" />
+              <rect x="14.5" y="1" width="3" height="8" rx="0.5" fill="currentColor" opacity="0.7" />
+              <rect x="12" y="3.5" width="8" height="3" rx="0.5" fill="currentColor" opacity="0.7" />
+              <path d="M4 18 L16 9 L28 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+              <rect x="6" y="18" width="20" height="12" rx="0.5" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
+              <path d="M13 30 L13 23 Q16 20 19 23 L19 30" stroke="currentColor" strokeWidth="1" opacity="0.4" />
             </svg>
-            <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">Resepsi</h3>
-            <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">13:00 WIB</p>
-            <p className="font-display text-sm sm:text-base text-gold-light font-medium">Roemah Kopi Sandjaja</p>
+            <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">Pemberkatan Nikah</h3>
+            <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">10:00 WIB</p>
+            <p className="font-display text-sm sm:text-base text-gold-light font-medium">GMS Kelapa Gading</p>
             <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">Kelapa Gading, Jakarta Utara</p>
-            <motion.a
-              href="https://maps.app.goo.gl/hqueMQCEknq6c1RN8"
+            <a
+              href="https://maps.google.com/?q=GMS+Kelapa+Gading+Jakarta"
               target="_blank"
               rel="noopener noreferrer"
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-1.5 mt-3 px-4 py-1.5 border border-gold/20 rounded-lg text-gold text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-sans hover:bg-gold/10 transition-all"
+              className="inline-flex items-center gap-1.5 mt-3 px-4 py-1.5 border border-gold/20 rounded-lg text-gold text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-sans hover:bg-gold/10 active:scale-[0.97] transition-all"
             >
               <MapPinIcon /> Lihat Lokasi
-            </motion.a>
+            </a>
             <div className="mt-4 border border-gold/10 overflow-hidden rounded-lg">
               <iframe
-                src="https://maps.google.com/maps?q=Roemah+Kopi+Sandjaja+Kelapa+Gading&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=GMS+Kelapa+Gading+Jakarta&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="150"
                 style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2)" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Lokasi Resepsi"
+                title="Lokasi Pemberkatan Nikah"
               />
             </div>
           </div>
