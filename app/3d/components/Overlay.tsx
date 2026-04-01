@@ -190,7 +190,7 @@ function VerseSection() {
    EVENTS — with embedded maps
    ════════════════════════════════════════════════════ */
 function EventsSection() {
-  const c = useCountdown("May 30, 2026 10:00:00");
+  const c = useCountdown("May 30, 2026 09:30:00");
   return (
     <S id="events">
       <div className="max-w-sm sm:max-w-md w-full">
@@ -237,7 +237,7 @@ function EventsSection() {
         <A v={fadeRight} delay={0.15}>
           <div className="relative p-5 sm:p-6 bg-black/40 backdrop-blur-sm rounded-lg border border-gold/10">
             <p className="text-sm text-gold tracking-[0.25em] mb-1 font-sans font-bold">PEMBERKATAN NIKAH</p>
-            <p className="text-gold-light/70 text-base font-serif">10:00 WIB</p>
+            <p className="text-gold-light/70 text-base font-serif">09:30 WIB</p>
             <p className="text-gold-light/50 text-sm italic font-serif mt-1">GMS Kelapa Gading<br />Kelapa Gading, Jakarta Utara</p>
             <div className="mt-3 rounded-lg overflow-hidden border border-gold/10">
               <iframe

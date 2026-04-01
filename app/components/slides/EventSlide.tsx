@@ -7,7 +7,7 @@ import SlideReveal from "../SlideReveal";
 import Particles from "../Particles";
 import { useSlideContext } from "../SlideManager";
 
-const WEDDING_DATE = new Date("2026-05-30T10:00:00+07:00").getTime();
+const WEDDING_DATE = new Date("2026-05-30T09:30:00+07:00").getTime();
 
 function MapPinIcon() {
   return (
@@ -202,7 +202,7 @@ export default function EventSlide() {
               <path d="M13 30 L13 23 Q16 20 19 23 L19 30" stroke="currentColor" strokeWidth="1" opacity="0.4" />
             </svg>
             <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">Pemberkatan Nikah</h3>
-            <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">10:00 WIB</p>
+            <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">09:30 WIB</p>
             <p className="font-display text-sm sm:text-base text-gold-light font-medium">GMS Kelapa Gading</p>
             <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">Kelapa Gading, Jakarta Utara</p>
             <a
