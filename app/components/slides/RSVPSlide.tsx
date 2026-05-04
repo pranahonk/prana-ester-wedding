@@ -40,7 +40,6 @@ export default function RSVPSlide() {
 
   return (
     <SlideWrapper
-      allowScroll
       style={{
         background: `
           radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.06) 0%, transparent 50%),
@@ -52,7 +51,7 @@ export default function RSVPSlide() {
     >
       <Particles count={8} seed={601} />
 
-      <div className="max-w-lg mx-auto relative z-10 w-full">
+      <div className="max-w-lg mx-auto relative z-10 w-full overflow-y-auto h-full">
         {/* Header */}
         <SlideReveal isActive={isActive}>
           <div className="text-center mb-8">

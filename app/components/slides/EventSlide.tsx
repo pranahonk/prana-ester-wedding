@@ -76,7 +76,6 @@ export default function EventSlide() {
 
   return (
     <SlideWrapper
-      allowScroll
       style={{
         background: `
           radial-gradient(ellipse at 30% 20%, rgba(212,175,55,0.06) 0%, transparent 50%),
@@ -89,7 +88,7 @@ export default function EventSlide() {
     >
       <Particles count={6} seed={303} durationMin={10} durationMax={18} leftMin={15} leftMax={85} showOpacity={false} />
 
-      <div className="max-w-md mx-auto relative z-10 w-full">
+      <div className="max-w-md mx-auto relative z-10 w-full overflow-y-auto h-full">
         {/* Header */}
         <SlideReveal isActive={isActive}>
           <div className="text-center mb-6 sm:mb-8">

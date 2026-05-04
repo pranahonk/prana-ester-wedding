@@ -112,7 +112,6 @@ export default function GiftSlide() {
 
   return (
     <SlideWrapper
-      allowScroll
       style={{
         background: `
           radial-gradient(ellipse at 50% 40%, rgba(212,175,55,0.06) 0%, transparent 50%),
@@ -122,7 +121,7 @@ export default function GiftSlide() {
       padding="pt-12 sm:pt-16 px-4 sm:px-6 pb-28"
       className="flex flex-col items-center"
     >
-      <div className="max-w-md mx-auto relative z-10 w-full">
+      <div className="max-w-md mx-auto relative z-10 w-full overflow-y-auto h-full">
         <SlideReveal isActive={isActive}>
           <div className="text-center mb-6">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold/60 mx-auto mb-4">

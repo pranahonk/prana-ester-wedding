@@ -64,7 +64,6 @@ export default function WishesSlide() {
 
   return (
     <SlideWrapper
-      allowScroll
       style={{
         background: `
           radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.06) 0%, transparent 50%),
@@ -76,7 +75,7 @@ export default function WishesSlide() {
     >
       <Particles count={8} seed={701} />
 
-      <div className="max-w-lg mx-auto relative z-10 w-full">
+      <div className="max-w-lg mx-auto relative z-10 w-full overflow-y-auto h-full">
         {/* Header */}
         <SlideReveal isActive={isActive}>
           <div className="text-center mb-6">
@@ -168,7 +167,7 @@ export default function WishesSlide() {
           )}
 
           <div
-            className="relative sm:overflow-y-auto sm:max-h-[260px] sm:slide-scrollable"
+            className="relative sm:overflow-y-auto sm:max-h-[260px]"
           >
             <div>
               {wishes.length === 0 ? (

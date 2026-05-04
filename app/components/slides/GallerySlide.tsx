@@ -86,7 +86,6 @@ export default function GallerySlide({
 
   return (
     <SlideWrapper
-      allowScroll
       style={{
         background: `
           radial-gradient(ellipse at 50% 40%, rgba(212,175,55,0.06) 0%, transparent 50%),
@@ -96,7 +95,7 @@ export default function GallerySlide({
       padding="pt-12 sm:pt-16 px-3 sm:px-4 pb-28"
       className="flex flex-col items-center"
     >
-      <div className="max-w-2xl mx-auto relative z-10 w-full">
+      <div className="max-w-2xl mx-auto relative z-10 w-full overflow-y-auto h-full">
         <SlideReveal isActive={isActive}>
           <div className="text-center mb-5 sm:mb-6">
             <p className="text-gold/35 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase font-sans mb-2">
