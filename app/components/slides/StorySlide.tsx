@@ -6,8 +6,8 @@ import { timelineData } from "@/app/data/timelineData";
 
 export default function StorySlide() {
   return (
-    <SlideWrapper allowScroll padding="pt-8 sm:pt-10 px-4 sm:px-6 pb-24">
-      <div className="max-w-3xl mx-auto">
+    <SlideWrapper padding="pt-8 sm:pt-10 px-4 sm:px-6 pb-24">
+      <div className="max-w-3xl mx-auto overflow-y-auto h-full">
         <div className="text-center mb-8 sm:mb-12">
           <p className="text-gold/40 text-xs sm:text-sm uppercase tracking-[0.3em] mb-3 font-sans">
             Our Journey
