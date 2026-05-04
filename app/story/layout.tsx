@@ -17,5 +17,9 @@ export default function StoryLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <div style={{ position: "static", overflow: "auto" }} className="min-h-screen">
+      {children}
+    </div>
+  );
 }
