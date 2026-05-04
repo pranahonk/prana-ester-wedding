@@ -28,21 +28,21 @@ Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i un
 dengan
 👰🏼‍♀️ : *Ester Siwi Prihardani*
 
+🔗 ${url}
+
 yang akan dilaksanakan pada :
 
 *📍 PEMBERKATAN NIKAH*
 🗓️ *Sabtu, 30 Mei 2026 ~ 09:30 WIB*
 📍 *GMS Kelapa Gading*
     Jl. Kelapa Gading, Jakarta Utara
-🔗 ${ceremonyMapUrl}
+📍 ${ceremonyMapUrl}
 
 *🍽️ RESEPSI*
 🗓️ *Sabtu, 30 Mei 2026 ~ 13:00 WIB*
 📍 *Roemah Kopi Sandjaja*
     Jl. Kelapa Gading, Jakarta Utara
-🔗 ${receptionMapUrl}
-
-${url}
+📍 ${receptionMapUrl}
 
 Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kami.
 
