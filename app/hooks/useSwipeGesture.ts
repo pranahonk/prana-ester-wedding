@@ -26,19 +26,17 @@ export default function useSwipeGesture({
   const shouldBlockNavigation = useCallback((el: EventTarget | null, direction: "up" | "down"): boolean => {
     let node = el as HTMLElement | null;
     while (node && node !== document.body) {
-      if (node.classList.contains("slide-scrollable")) {
-        const { scrollTop, scrollHeight, clientHeight } = node;
-        const hasScroll = scrollHeight > clientHeight + 1;
-        if (!hasScroll) {
-          node = node.parentElement;
-          continue;
-        }
+      const { scrollTop, scrollHeight, clientHeight } = node;
+      const hasScroll = scrollHeight > clientHeight + 1;
+
+      if (hasScroll) {
         const atTop = scrollTop <= 1;
         const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
         // Block navigation if there's room to scroll in the swipe direction
         if (direction === "up" && !atBottom) return true;
         if (direction === "down" && !atTop) return true;
       }
+
       node = node.parentElement;
     }
     return false;
