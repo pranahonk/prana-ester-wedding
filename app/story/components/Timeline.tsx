@@ -10,11 +10,8 @@ interface TimelineProps {
 
 export default function Timeline({ milestones }: TimelineProps) {
   const [activeIds, setActiveIds] = useState<Set<number>>(new Set());
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
-
     const observer = new IntersectionObserver(
       (entries) => {
         const newActive = new Set(activeIds);
@@ -39,10 +36,6 @@ export default function Timeline({ milestones }: TimelineProps) {
 
     return () => observer.disconnect();
   }, []);
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <div className="relative py-8 sm:py-12">
