@@ -2,8 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const NAV_ITEMS: { label: string; slide: number; icon: React.ReactNode }[] = [
+const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.ReactNode }[] = [
   {
     label: "Opening",
     slide: 1,
@@ -99,6 +101,16 @@ const NAV_ITEMS: { label: string; slide: number; icon: React.ReactNode }[] = [
     ),
   },
   {
+    label: "Story",
+    href: "/story",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path opacity=".4" d="M17.29 2H6.71C4.21 2 2 4.21 2 6.71v8.58c0 .96.3 1.89.86 2.67l2.2 3.07c.31.44.94.46 1.28.05l1.19-1.43c.34-.41.95-.42 1.31-.03l1.28 1.39c.37.41.99.41 1.37 0l1.28-1.39c.36-.39.97-.38 1.31.03l1.19 1.43c.34.41.97.39 1.28-.05l2.2-3.07c.56-.78.86-1.71.86-2.67V6.71C22 4.21 19.79 2 17.29 2Z" fill="currentColor" />
+        <path d="M10.75 8.63c0-.41.34-.75.75-.75s.75.34.75.75v2.75h2.75c.41 0 .75.34.75.75s-.34.75-.75.75H12.25v2.75c0 .41-.34.75-.75.75s-.75-.34-.75-.75v-2.75H8c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h2.75V8.63Z" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
     label: "Thanks",
     slide: 10,
     icon: (
@@ -120,11 +132,12 @@ export default function BottomNav({
   visible: boolean;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
-  // Find which nav item is closest active match
+  // Find which nav item is closest active match (for slide-based items)
   function getActiveIdx() {
     for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
-      if (currentSlide >= NAV_ITEMS[i].slide) return i;
+      if (NAV_ITEMS[i].slide && currentSlide >= NAV_ITEMS[i].slide!) return i;
     }
     return 0;
   }
@@ -179,38 +192,57 @@ export default function BottomNav({
           style={{ minWidth: "100%", width: "max-content", margin: "0 auto" }}
         >
         {NAV_ITEMS.map((item, idx) => {
-          const isActive = idx === activeIndex;
+          const isActive = item.href
+            ? pathname === item.href
+            : idx === activeIndex;
+
+          const navContent = (
+            <>
+              {/* Active background */}
+              {isActive && (
+                <motion.div
+                  layoutId="nav-active-bg"
+                  className="absolute rounded-xl"
+                  style={{
+                    inset: "4px 6px",
+                    background: "rgba(212, 175, 55, 0.1)",
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{item.icon}</span>
+              <span
+                className="relative z-10 font-sans leading-none"
+                style={{ fontSize: 10 }}
+              >
+                {item.label}
+              </span>
+            </>
+          );
+
           return (
             <li
               key={item.label}
               className="nav-item flex-none"
               style={{ width: 76, minWidth: 72, maxWidth: 88 }}
             >
-              <button
-                onClick={() => onNavigate(item.slide)}
-                className="relative flex flex-col items-center justify-center w-full h-full cursor-pointer transition-colors duration-200 gap-1 py-2"
-                style={{ color: isActive ? "#D4AF37" : "rgba(212, 175, 55, 0.3)" }}
-              >
-                {/* Active background */}
-                {isActive && (
-                  <motion.div
-                    layoutId="nav-active-bg"
-                    className="absolute rounded-xl"
-                    style={{
-                      inset: "4px 6px",
-                      background: "rgba(212, 175, 55, 0.1)",
-                    }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{item.icon}</span>
-                <span
-                  className="relative z-10 font-sans leading-none"
-                  style={{ fontSize: 10 }}
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  className="relative flex flex-col items-center justify-center w-full h-full cursor-pointer transition-colors duration-200 gap-1 py-2"
+                  style={{ color: isActive ? "#D4AF37" : "rgba(212, 175, 55, 0.3)" }}
                 >
-                  {item.label}
-                </span>
-              </button>
+                  {navContent}
+                </Link>
+              ) : (
+                <button
+                  onClick={() => onNavigate(item.slide!)}
+                  className="relative flex flex-col items-center justify-center w-full h-full cursor-pointer transition-colors duration-200 gap-1 py-2"
+                  style={{ color: isActive ? "#D4AF37" : "rgba(212, 175, 55, 0.3)" }}
+                >
+                  {navContent}
+                </button>
+              )}
             </li>
           );
         })}
