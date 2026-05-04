@@ -15,9 +15,10 @@ import RSVPSlide from "./slides/RSVPSlide";
 import WishesSlide from "./slides/WishesSlide";
 import GiftSlide from "./slides/GiftSlide";
 import GallerySlide from "./slides/GallerySlide";
+import StorySlide from "./slides/StorySlide";
 import ClosingSlide from "./slides/ClosingSlide";
 
-const TOTAL_SLIDES = 11; // 0-10
+const TOTAL_SLIDES = 12; // 0-11
 
 const SLIDE_HASH_MAP: Record<string, number> = {
   opening: 1,
@@ -29,7 +30,8 @@ const SLIDE_HASH_MAP: Record<string, number> = {
   wishes: 7,
   gift: 8,
   gallery: 9,
-  closing: 10,
+  story: 10,
+  closing: 11,
 };
 
 const INDEX_TO_HASH = Object.fromEntries(
@@ -142,6 +144,7 @@ export default function SlideManager({ guestName }: { guestName: string }) {
     <WishesSlide key="wishes" />,
     <GiftSlide key="gift" />,
     <GallerySlide key="gallery" onLightboxChange={setLightboxOpen} />,
+    <StorySlide key="story" />,
     <ClosingSlide key="closing" />,
   ];
 
