@@ -10,8 +10,14 @@ interface TimelineProps {
 
 export default function Timeline({ milestones }: TimelineProps) {
   const [activeIds, setActiveIds] = useState<Set<number>>(new Set());
+  const [isWideScreen, setIsWideScreen] = useState(false);
 
   useEffect(() => {
+    setIsWideScreen(window.innerWidth > 768);
+
+    const handleResize = () => setIsWideScreen(window.innerWidth > 768);
+    window.addEventListener("resize", handleResize);
+
     const observer = new IntersectionObserver(
       (entries) => {
         const newActive = new Set(activeIds);
@@ -34,7 +40,10 @@ export default function Timeline({ milestones }: TimelineProps) {
       });
     }, 0);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
@@ -49,7 +58,7 @@ export default function Timeline({ milestones }: TimelineProps) {
             <TimelineCard
               milestone={milestone}
               isActive={activeIds.has(milestone.id)}
-              isLeft={idx % 2 === 0 && typeof window !== "undefined" && window.innerWidth > 768}
+              isLeft={idx % 2 === 0 && isWideScreen}
             />
           </div>
         ))}
