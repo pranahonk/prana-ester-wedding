@@ -6,22 +6,11 @@ import { TimelineMilestone } from "@/app/data/timelineData";
 
 interface TimelineProps {
   milestones: TimelineMilestone[];
-  initialExpanded?: number;
 }
 
-export default function Timeline({
-  milestones,
-  initialExpanded,
-}: TimelineProps) {
-  const [expandedId, setExpandedId] = useState<number | null>(
-    initialExpanded || null
-  );
+export default function Timeline({ milestones }: TimelineProps) {
   const [activeIds, setActiveIds] = useState<Set<number>>(new Set());
   const [isMounted, setIsMounted] = useState(false);
-
-  const handleToggle = (id: number) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -60,14 +49,12 @@ export default function Timeline({
       {/* Vertical timeline line */}
       <div className="absolute left-[1.75rem] md:left-1/2 top-0 bottom-0 w-1 bg-gold/10 transform md:-translate-x-1/2" />
 
-      {/* Timeline cards */}
+      {/* Timeline cards - always visible */}
       <div className="space-y-8 relative z-10 max-w-2xl mx-auto px-4">
         {milestones.map((milestone, idx) => (
           <div key={milestone.id} data-milestone-id={milestone.id}>
             <TimelineCard
               milestone={milestone}
-              isExpanded={expandedId === milestone.id}
-              onToggle={handleToggle}
               isActive={activeIds.has(milestone.id)}
               isLeft={idx % 2 === 0 && typeof window !== "undefined" && window.innerWidth > 768}
             />
