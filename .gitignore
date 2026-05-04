@@ -56,3 +56,4 @@ next-env.d.ts
 # gitkeep placeholders
 .gitkeep
 .worktrees/
+.env*.local

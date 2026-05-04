@@ -44,9 +44,6 @@
     background: var(--navy-darker);
     color: var(--text-dark);
     font-family: var(--font-cormorant), Georgia, serif;
-    overflow: hidden;
-    position: fixed;
-    inset: 0;
   }
 }
 
