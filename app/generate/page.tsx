@@ -27,9 +27,16 @@ dengan
 👰🏼‍♀️ : *Ester Siwi Prihardani*
 
 yang akan dilaksanakan pada :
-🗓️ *Sabtu, 30 Mei 2026*
+
+*📍 PEMBERKATAN NIKAH*
+🗓️ *Sabtu, 30 Mei 2026 ~ 09:30 WIB*
+📍 *GMS Kelapa Gading*
+    Jl. Kelapa Gading, Jakarta Utara
+
+*🍽️ RESEPSI*
+🗓️ *Sabtu, 30 Mei 2026 ~ 13:00 WIB*
 📍 *Roemah Kopi Sandjaja*
-    Kelapa Gading, Jakarta Utara
+    Jl. Kelapa Gading, Jakarta Utara
 
 ${url}
 
@@ -87,12 +94,49 @@ function StyledMessage({ name }: { name: string }) {
         <p>👰🏼‍♀️ : <strong>Ester Siwi Prihardani</strong></p>
       </div>
 
-      {/* Date & Venue */}
+      {/* Ceremony Venue */}
       <div className="space-y-0.5">
         <p className="text-gray-500 text-[12px]">yang akan dilaksanakan pada :</p>
-        <p>🗓️ <strong>Sabtu, 30 Mei 2026</strong></p>
-        <p>📍 <strong>Roemah Kopi Sandjaja</strong></p>
-        <p className="text-gray-500 text-[12px] pl-5">Kelapa Gading, Jakarta Utara</p>
+        <p><strong>📍 PEMBERKATAN NIKAH</strong></p>
+        <p className="text-gray-500 text-[12px]">🗓️ Sabtu, 30 Mei 2026 ~ 09:30 WIB</p>
+        <p><strong>GMS Kelapa Gading</strong></p>
+        <p className="text-gray-500 text-[12px] pl-5">Jl. Kelapa Gading, Jakarta Utara</p>
+      </div>
+
+      {/* Reception Venue */}
+      <div className="space-y-0.5">
+        <p><strong>🍽️ RESEPSI</strong></p>
+        <p className="text-gray-500 text-[12px]">🗓️ Sabtu, 30 Mei 2026 ~ 13:00 WIB</p>
+        <p><strong>Roemah Kopi Sandjaja</strong></p>
+        <p className="text-gray-500 text-[12px] pl-5">Jl. Kelapa Gading, Jakarta Utara</p>
+      </div>
+
+      {/* Ceremony Venue Map */}
+      <div className="rounded-lg overflow-hidden h-48 border border-gray-300">
+        <iframe
+          width="100%"
+          height="100%"
+          frameBorder="0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.589048646267!2d106.91070731177454!3d-6.124758099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6e21caa0001%3A0x1234567890abc!2sGMS%20Kelapa%20Gading!5e0!3m2!1sen!2sid!4v1234567890"
+          allowFullScreen={true}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          style={{ border: 0 }}
+        />
+      </div>
+
+      {/* Reception Venue Map */}
+      <div className="rounded-lg overflow-hidden h-48 border border-gray-300">
+        <iframe
+          width="100%"
+          height="100%"
+          frameBorder="0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.576456!2d106.90654!3d-6.138372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6f2f6f6f6f%3A0x1234567890abc!2sRoemah%20Kopi%20Sandjaja!5e0!3m2!1sen!2sid!4v1234567890"
+          allowFullScreen={true}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          style={{ border: 0 }}
+        />
       </div>
 
       {/* Link */}
@@ -145,7 +189,7 @@ export default function GeneratePage() {
           </div>
           <div className="text-[#a7d9a2]">
             <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.25 2.25H3.75a1.5 1.5 0 00-1.5 1.5v12a1.5 1.5 0 001.5 1.5h3v3.75l4.5-3.75h9a1.5 1.5 0 001.5-1.5v-12a1.5 1.5 0 00-1.5-1.5z"/>
+              <path d="M20.25 2.25H3.75a1.5 1.5 0 00-1.5 1.5v12a1.5 1.5 0 001.5 1.5h3v3.75l4.5-3.75h9a1.5 1.5 0 001.5-1.5v-12a1.5 1.5 0 00-1.5-1.5z" />
             </svg>
           </div>
         </div>
@@ -161,7 +205,7 @@ export default function GeneratePage() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Tresya Hana Sintha"
+            placeholder="Prana dan Ester"
             className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#25D366] bg-gray-50"
           />
         </div>
@@ -188,8 +232,8 @@ export default function GeneratePage() {
                       {new Date().toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}
                     </span>
                     <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
-                      <path d="M1 5.5L4.5 9L9 1" stroke="#53bdeb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M5 5.5L8.5 9L15 1" stroke="#53bdeb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M1 5.5L4.5 9L9 1" stroke="#53bdeb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M5 5.5L8.5 9L15 1" stroke="#53bdeb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 </div>
