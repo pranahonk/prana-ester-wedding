@@ -111,33 +111,25 @@ function StyledMessage({ name }: { name: string }) {
         <p className="text-gray-500 text-[12px] pl-5">Jl. Kelapa Gading, Jakarta Utara</p>
       </div>
 
-      {/* Ceremony Venue Map */}
-      <div className="rounded-lg overflow-hidden h-48 border border-gray-300 my-2">
-        <iframe
-          width="100%"
-          height="100%"
-          frameBorder="0"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.589!2d106.911!3d-6.1248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sGMS%20Kelapa%20Gading%20Jakarta!5e0!3m2!1sen!2sid!4v1700000000000"
-          allowFullScreen={true}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          style={{ border: 0 }}
-        />
-      </div>
+      {/* Ceremony Venue Map Link */}
+      <a
+        href="https://www.google.com/maps/search/GMS+Kelapa+Gading+Jakarta+Utara"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block w-full text-center py-2 px-3 bg-gradient-to-r from-blue-100 to-blue-50 border border-blue-300 rounded-lg hover:from-blue-200 hover:to-blue-100 transition-all my-2"
+      >
+        <p className="text-blue-700 font-semibold text-sm">📍 Lihat Lokasi di Google Maps</p>
+      </a>
 
-      {/* Reception Venue Map */}
-      <div className="rounded-lg overflow-hidden h-48 border border-gray-300 my-2">
-        <iframe
-          width="100%"
-          height="100%"
-          frameBorder="0"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.576!2d106.907!3d-6.1384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sRoemah%20Kopi%20Sandjaja%20Kelapa%20Gading!5e0!3m2!1sen!2sid!4v1700000000001"
-          allowFullScreen={true}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          style={{ border: 0 }}
-        />
-      </div>
+      {/* Reception Venue Map Link */}
+      <a
+        href="https://www.google.com/maps/search/Roemah+Kopi+Sandjaja+Kelapa+Gading+Jakarta"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block w-full text-center py-2 px-3 bg-gradient-to-r from-blue-100 to-blue-50 border border-blue-300 rounded-lg hover:from-blue-200 hover:to-blue-100 transition-all my-2"
+      >
+        <p className="text-blue-700 font-semibold text-sm">📍 Lihat Lokasi di Google Maps</p>
+      </a>
 
       {/* Link */}
       <p
