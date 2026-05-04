@@ -14,6 +14,8 @@ function titleCase(str: string) {
 function buildMessage(name: string): string {
   const encodedName = name.replace(/ /g, "+");
   const url = `https://www.pranaester.com/?to=${encodedName}`;
+  const ceremonyMapUrl = "https://www.google.com/maps/search/GMS+Kelapa+Gading+Jakarta+Utara";
+  const receptionMapUrl = "https://www.google.com/maps/search/Roemah+Kopi+Sandjaja+Kelapa+Gading";
 
   return `Kepada Yth.
 Bapak/Ibu/Saudara/i
@@ -32,11 +34,13 @@ yang akan dilaksanakan pada :
 🗓️ *Sabtu, 30 Mei 2026 ~ 09:30 WIB*
 📍 *GMS Kelapa Gading*
     Jl. Kelapa Gading, Jakarta Utara
+🔗 ${ceremonyMapUrl}
 
 *🍽️ RESEPSI*
 🗓️ *Sabtu, 30 Mei 2026 ~ 13:00 WIB*
 📍 *Roemah Kopi Sandjaja*
     Jl. Kelapa Gading, Jakarta Utara
+🔗 ${receptionMapUrl}
 
 ${url}
 
