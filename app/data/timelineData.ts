@@ -78,7 +78,7 @@ export const timelineData: TimelineMilestone[] = [
     order: 6,
   },
   {
-    id: 8,
+    id: 7,
     year: 2025,
     date: "December 21, 2025",
     emoji: "💎",
@@ -86,10 +86,10 @@ export const timelineData: TimelineMilestone[] = [
     location: "Jakarta",
     photo: "/photos/DSC00328.jpg",
     description: "On this beautiful December evening, you got down on one knee, and I said yes without hesitation. In that moment, surrounded by the life we've built together, I knew this was forever. This wasn't just a proposal—it was a promise, a celebration of our journey, and the beginning of our next chapter together.",
-    order: 8,
+    order: 7,
   },
   {
-    id: 9,
+    id: 8,
     year: 2026,
     date: "May 30, 2026",
     emoji: "💒",
@@ -97,6 +97,6 @@ export const timelineData: TimelineMilestone[] = [
     location: "Wedding Venue, Jakarta",
     photo: "/photos/DSC00479.jpg",
     description: "Today, surrounded by those we love, we celebrate not just our love, but the journey that brought us here. From that first meeting in Kelapa Gading to this moment, every chapter has led us to say 'yes' forever. This is the beginning of the rest of our lives—a promise kept, a story continued, and love that will endure for all our days.",
-    order: 9,
+    order: 8,
   },
 ];
