@@ -1,0 +1,79 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import TimelineCard from "./TimelineCard";
+import { TimelineMilestone } from "@/app/data/timelineData";
+
+interface TimelineProps {
+  milestones: TimelineMilestone[];
+  initialExpanded?: number;
+}
+
+export default function Timeline({
+  milestones,
+  initialExpanded,
+}: TimelineProps) {
+  const [expandedId, setExpandedId] = useState<number | null>(
+    initialExpanded || null
+  );
+  const [activeIds, setActiveIds] = useState<Set<number>>(new Set());
+  const [isMounted, setIsMounted] = useState(false);
+
+  const handleToggle = (id: number) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
+  useEffect(() => {
+    setIsMounted(true);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const newActive = new Set(activeIds);
+        entries.forEach((entry) => {
+          const id = parseInt(
+            entry.target.getAttribute("data-milestone-id") || "0"
+          );
+          if (entry.isIntersecting) {
+            newActive.add(id);
+          }
+        });
+        setActiveIds(newActive);
+      },
+      { threshold: 0.1 }
+    );
+
+    setTimeout(() => {
+      document.querySelectorAll("[data-milestone-id]").forEach((el) => {
+        observer.observe(el);
+      });
+    }, 0);
+
+    return () => observer.disconnect();
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
+  return (
+    <div className="relative py-8 sm:py-12">
+      {/* Vertical timeline line */}
+      <div className="absolute left-[1.75rem] md:left-1/2 top-0 bottom-0 w-1 bg-gold/10 transform md:-translate-x-1/2" />
+
+      {/* Timeline cards */}
+      <div className="space-y-8 relative z-10 max-w-2xl mx-auto px-4">
+        {milestones.map((milestone, idx) => (
+          <div key={milestone.id} data-milestone-id={milestone.id}>
+            <TimelineCard
+              milestone={milestone}
+              isExpanded={expandedId === milestone.id}
+              onToggle={handleToggle}
+              isActive={activeIds.has(milestone.id)}
+              isLeft={idx % 2 === 0 && typeof window !== "undefined" && window.innerWidth > 768}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
