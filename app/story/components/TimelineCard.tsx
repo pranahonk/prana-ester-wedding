@@ -17,9 +17,9 @@ export default function TimelineCard({
 }: TimelineCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, y: 12 }}
+      animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className={`relative flex ${isLeft ? "flex-row-reverse" : "flex-row"} gap-4 mb-8 md:gap-8`}
     >
       {/* Timeline dot and connector line */}
