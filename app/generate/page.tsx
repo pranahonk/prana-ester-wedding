@@ -112,12 +112,12 @@ function StyledMessage({ name }: { name: string }) {
       </div>
 
       {/* Ceremony Venue Map */}
-      <div className="rounded-lg overflow-hidden h-48 border border-gray-300">
+      <div className="rounded-lg overflow-hidden h-48 border border-gray-300 my-2">
         <iframe
           width="100%"
           height="100%"
           frameBorder="0"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.589048646267!2d106.91070731177454!3d-6.124758099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6e21caa0001%3A0x1234567890abc!2sGMS%20Kelapa%20Gading!5e0!3m2!1sen!2sid!4v1234567890"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.589!2d106.911!3d-6.1248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sGMS%20Kelapa%20Gading%20Jakarta!5e0!3m2!1sen!2sid!4v1700000000000"
           allowFullScreen={true}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -126,12 +126,12 @@ function StyledMessage({ name }: { name: string }) {
       </div>
 
       {/* Reception Venue Map */}
-      <div className="rounded-lg overflow-hidden h-48 border border-gray-300">
+      <div className="rounded-lg overflow-hidden h-48 border border-gray-300 my-2">
         <iframe
           width="100%"
           height="100%"
           frameBorder="0"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.576456!2d106.90654!3d-6.138372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6f2f6f6f6f%3A0x1234567890abc!2sRoemah%20Kopi%20Sandjaja!5e0!3m2!1sen!2sid!4v1234567890"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.576!2d106.907!3d-6.1384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sRoemah%20Kopi%20Sandjaja%20Kelapa%20Gading!5e0!3m2!1sen!2sid!4v1700000000001"
           allowFullScreen={true}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
