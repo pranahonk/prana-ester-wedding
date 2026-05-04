@@ -102,7 +102,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
   },
   {
     label: "Story",
-    href: "/story",
+    slide: 10,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path opacity=".4" d="M17.29 2H6.71C4.21 2 2 4.21 2 6.71v8.58c0 .96.3 1.89.86 2.67l2.2 3.07c.31.44.94.46 1.28.05l1.19-1.43c.34-.41.95-.42 1.31-.03l1.28 1.39c.37.41.99.41 1.37 0l1.28-1.39c.36-.39.97-.38 1.31.03l1.19 1.43c.34.41.97.39 1.28-.05l2.2-3.07c.56-.78.86-1.71.86-2.67V6.71C22 4.21 19.79 2 17.29 2Z" fill="currentColor" />
@@ -112,7 +112,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
   },
   {
     label: "Thanks",
-    slide: 10,
+    slide: 11,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path opacity=".4" d="M16.34 2H7.67C4.28 2 2 4.38 2 7.92v8.17C2 19.62 4.28 22 7.67 22h8.67c3.39 0 5.66-2.38 5.66-5.91V7.92C22 4.38 19.73 2 16.34 2Z" fill="currentColor" />
