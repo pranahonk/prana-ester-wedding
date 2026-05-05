@@ -80,7 +80,7 @@ export const timelineData: TimelineMilestone[] = [
   {
     id: 7,
     year: 2025,
-    date: "December 21, 2025",
+    date: "December 28, 2025",
     emoji: "💎",
     title: "Our Engagement",
     location: "Jakarta",
