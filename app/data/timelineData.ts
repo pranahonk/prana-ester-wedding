@@ -73,7 +73,7 @@ export const timelineData: TimelineMilestone[] = [
     emoji: "✨",
     title: "One Year of Forever",
     location: "Jakarta",
-    photo: "/photos/DSC00317.jpg",
+    photo: "/photos/IMG-20250329-WA0025.jpg",
     description: "One year together felt like a lifetime of love compressed into moments of pure joy. We celebrated how far we've come, how much we've grown, and how our love has only deepened with each passing day. On our first anniversary, we didn't just look back—we looked forward to all the years ahead, grateful for second chances and eternal love.",
     order: 6,
   },
