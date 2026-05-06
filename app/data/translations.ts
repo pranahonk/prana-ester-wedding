@@ -39,6 +39,7 @@ export const translations = {
       labelName: "Nama Lengkap",
       placeholderName: "Masukkan nama lengkap",
       labelPhone: "No. WhatsApp",
+      placeholderPhone: "08xxxxxxxxxx",
       labelAttendance: "Kehadiran",
       attendYes: "Hadir",
       attendNo: "Tidak Hadir",
@@ -139,11 +140,11 @@ export const translations = {
       minutes: "Minutes",
       seconds: "Seconds",
       reception: "Reception",
-      receptionLocation: "Kelapa Gading, North Jakarta",
+      receptionLocation: "Kelapa Gading, Jakarta Utara",
       viewLocation: "View Location",
       receptionMapTitle: "Reception Venue",
       ceremony: "Wedding Ceremony",
-      ceremonyLocation: "Kelapa Gading, North Jakarta",
+      ceremonyLocation: "Kelapa Gading, Jakarta Utara",
       ceremonyMapTitle: "Ceremony Venue",
     },
 
@@ -153,6 +154,7 @@ export const translations = {
       labelName: "Full Name",
       placeholderName: "Enter your full name",
       labelPhone: "WhatsApp Number",
+      placeholderPhone: "08xxxxxxxxxx",
       labelAttendance: "Attendance",
       attendYes: "Attending",
       attendNo: "Not Attending",
@@ -207,8 +209,8 @@ export const translations = {
     },
 
     verse: {
-      reference: "Mark 10 : 9",
-      source: "Bible · Gospel of Mark",
+      reference: "Markus 10 : 9",
+      source: "Alkitab · Injil Markus",
     },
 
     nav: {
