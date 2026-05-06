@@ -95,13 +95,13 @@ Slides that require translation — one `const { t } = useLanguage()` line added
 | GiftSlide | `t.gift` |
 | StorySlide | `t.story` |
 | ClosingSlide | `t.closing` |
-| VerseSlide | `t.verse` |
+| VerseSlide | `t.verse` (surrounding UI labels only — verse text itself unchanged) |
 | BottomNav | `t.nav` |
 
 **Out of scope — not translated:**
 - Proper names: Prana, Ester, family names
 - Dates and venue names (GMS Kelapa Gading, etc.)
-- Bible verses (kept in original language)
+- Bible verse text itself (surrounding UI labels in VerseSlide are translated, verse text is not)
 - Admin pages (`/admin`)
 
 ## Implementation Order
