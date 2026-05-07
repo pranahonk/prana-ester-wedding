@@ -95,7 +95,7 @@ export const translations = {
     },
 
     verse: {
-      reference: "Markus 10 : 9",
+      reference: "Markus 10:9",
       source: "Alkitab · Injil Markus",
     },
 
@@ -209,8 +209,8 @@ export const translations = {
     },
 
     verse: {
-      reference: "Markus 10 : 9",
-      source: "Alkitab · Injil Markus",
+      reference: "Mark 10:9",
+      source: "Bible · Gospel of Mark",
     },
 
     nav: {
@@ -231,3 +231,7 @@ export const translations = {
 
 export type Translations = typeof translations;
 export type Language = "id" | "en";
+
+// Compile-time check: ensures id and en have identical shape
+// This line will cause a TypeScript error if they diverge
+export const _typeCheck: Record<Language, typeof translations.id> = translations;
