@@ -6,9 +6,11 @@ import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
 import Particles from "../Particles";
 import { useSlideContext } from "../SlideManager";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function ClosingSlide() {
   const { isActive } = useSlideContext();
+  const { t } = useLanguage();
 
   return (
     <SlideWrapper padding="" className="flex flex-col items-center justify-center">
@@ -69,7 +71,7 @@ export default function ClosingSlide() {
         {/* Thank you label */}
         <SlideReveal delay={0.1} isActive={isActive}>
           <p className="text-gold/40 text-[9px] sm:text-[10px] tracking-[0.5em] uppercase font-sans mb-6 sm:mb-8">
-            Terima Kasih
+            {t.closing.thankYou}
           </p>
         </SlideReveal>
 

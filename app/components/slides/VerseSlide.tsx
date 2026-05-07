@@ -6,9 +6,11 @@ import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
 import Particles from "../Particles";
 import { useSlideContext } from "../SlideManager";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function VerseSlide() {
   const { isActive } = useSlideContext();
+  const { t } = useLanguage();
 
   return (
     <SlideWrapper padding="pt-12 sm:pt-16 px-4 sm:px-8 pb-24" className="flex flex-col items-center justify-center">
@@ -122,10 +124,10 @@ export default function VerseSlide() {
         <SlideReveal delay={0.45} isActive={isActive}>
           <div className="mt-6 sm:mt-8">
             <p className="font-display text-gold/70 text-sm sm:text-base tracking-[0.35em] font-semibold uppercase">
-              Markus 10 : 9
+              {t.verse.reference}
             </p>
             <p className="font-serif text-gold-light/30 text-[11px] sm:text-xs mt-2 tracking-[0.2em] uppercase">
-              Alkitab &middot; Injil Markus
+              {t.verse.source}
             </p>
           </div>
         </SlideReveal>

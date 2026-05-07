@@ -4,10 +4,11 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "../context/LanguageContext";
 
-const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.ReactNode }[] = [
+const NAV_ITEMS_STATIC: { key: string; slide?: number; href?: string; icon: React.ReactNode }[] = [
   {
-    label: "Opening",
+    key: "opening",
     slide: 1,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -16,7 +17,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "Groom",
+    key: "groom",
     slide: 2,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +27,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "Bride",
+    key: "bride",
     slide: 3,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +37,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "Ayat",
+    key: "verse",
     slide: 4,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +47,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "Acara",
+    key: "event",
     slide: 5,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +58,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "RSVP",
+    key: "rsvp",
     slide: 6,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,7 +68,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "Ucapan",
+    key: "wishes",
     slide: 7,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +78,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "Gift",
+    key: "gift",
     slide: 8,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -90,7 +91,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "Gallery",
+    key: "gallery",
     slide: 9,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -101,7 +102,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "Story",
+    key: "story",
     slide: 10,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +112,7 @@ const NAV_ITEMS: { label: string; slide?: number; href?: string; icon: React.Rea
     ),
   },
   {
-    label: "Thanks",
+    key: "thanks",
     slide: 11,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -133,6 +134,12 @@ export default function BottomNav({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const { t } = useLanguage();
+
+  const NAV_ITEMS = NAV_ITEMS_STATIC.map((item) => ({
+    ...item,
+    label: t.nav[item.key as keyof typeof t.nav],
+  }));
 
   // Find which nav item is closest active match (for slide-based items)
   function getActiveIdx() {

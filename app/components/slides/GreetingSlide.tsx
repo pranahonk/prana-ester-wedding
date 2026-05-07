@@ -5,6 +5,7 @@ import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
 import Particles from "../Particles";
 import { useSlideContext } from "../SlideManager";
+import { useLanguage } from "../../context/LanguageContext";
 
 function OrnamentalDivider() {
   return (
@@ -21,6 +22,7 @@ function OrnamentalDivider() {
 
 export default function GreetingSlide() {
   const { isActive } = useSlideContext();
+  const { t } = useLanguage();
 
   return (
     <SlideWrapper
@@ -56,7 +58,7 @@ export default function GreetingSlide() {
       <div className="relative z-10 w-full max-w-2xl mx-auto text-center px-4 sm:px-6">
         <SlideReveal isActive={isActive}>
           <p className="text-gold/35 text-[9px] sm:text-[11px] tracking-[0.4em] sm:tracking-[0.5em] uppercase font-sans mb-8 sm:mb-12">
-            Together with their families
+            {t.greeting.tagline}
           </p>
         </SlideReveal>
 

@@ -6,6 +6,7 @@ import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
 import Particles from "../Particles";
 import { useSlideContext } from "../SlideManager";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface Wish {
   id?: number;
@@ -16,6 +17,7 @@ interface Wish {
 
 export default function WishesSlide() {
   const { isActive } = useSlideContext();
+  const { t } = useLanguage();
   const [wishes, setWishes] = useState<Wish[]>([]);
   const [form, setForm] = useState({ name: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -80,10 +82,10 @@ export default function WishesSlide() {
         <SlideReveal isActive={isActive}>
           <div className="text-center mb-6">
             <p className="text-gold/35 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase font-sans mb-2">
-              Wishes & Prayers
+              {t.wishes.sectionLabel}
             </p>
             <h2 className="font-script text-3xl sm:text-4xl text-gold mb-1">
-              Ucapan & Doa
+              {t.wishes.heading}
             </h2>
             <div className="flex items-center justify-center gap-3 mt-3">
               <div className="w-8 sm:w-14 h-px bg-gradient-to-r from-transparent to-gold/20" />
@@ -98,27 +100,27 @@ export default function WishesSlide() {
           <form onSubmit={handleSubmit} className="space-y-4 mb-6">
             <div>
               <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
-                Nama
+                {t.wishes.labelName}
               </label>
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className="w-full bg-white/[0.03] border border-gold/15 rounded-lg text-gold-light px-4 py-3 font-serif text-base focus:border-gold/40 focus:outline-none transition-all placeholder:text-gold-light/20"
-                placeholder="Nama Anda"
+                placeholder={t.wishes.placeholderName}
                 required
               />
             </div>
             <div>
               <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
-                Ucapan & Doa
+                {t.wishes.labelMessage}
               </label>
               <textarea
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 rows={3}
                 className="w-full bg-white/[0.03] border border-gold/15 rounded-lg text-gold-light px-4 py-3 font-serif text-base focus:border-gold/40 focus:outline-none transition-all resize-none placeholder:text-gold-light/20"
-                placeholder="Tulis ucapan & doa..."
+                placeholder={t.wishes.placeholderMessage}
                 required
               />
             </div>
@@ -128,7 +130,7 @@ export default function WishesSlide() {
               whileTap={{ scale: 0.98 }}
               className="w-full py-3 bg-gradient-to-r from-gold to-gold-bright rounded-lg text-navy-deep font-sans text-[10px] sm:text-[11px] tracking-[0.3em] uppercase font-medium hover:shadow-[0_4px_20px_rgba(212,175,55,0.3)] transition-all duration-500 disabled:opacity-40 cursor-pointer"
             >
-              {status === "loading" ? "Mengirim..." : "Kirim Ucapan"}
+              {status === "loading" ? t.wishes.submitLoading : t.wishes.submitButton}
             </motion.button>
             {status === "success" && (
               <motion.p
@@ -136,7 +138,7 @@ export default function WishesSlide() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-gold text-center font-serif text-sm"
               >
-                Terima kasih atas ucapan dan doanya!
+                {t.wishes.successMessage}
               </motion.p>
             )}
           </form>
@@ -147,14 +149,14 @@ export default function WishesSlide() {
           {wishes.length > 0 && (
             <div className="flex items-center justify-between mb-3">
               <p className="text-gold/40 font-sans text-[10px] tracking-[0.2em] uppercase">
-                {wishes.length} Ucapan
+                {wishes.length} {t.wishes.wishCount}
               </p>
               <button
                 type="button"
                 onClick={() => setSortOrder(sortOrder === "desc" ? "asc" : "desc")}
                 className="flex items-center gap-1.5 text-gold/50 hover:text-gold/80 font-sans text-[10px] tracking-[0.15em] uppercase transition-colors cursor-pointer"
               >
-                {sortOrder === "desc" ? "Terbaru" : "Terlama"}
+                {sortOrder === "desc" ? t.wishes.sortNewest : t.wishes.sortOldest}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   {sortOrder === "desc" ? (
                     <path d="M12 5v14M5 12l7 7 7-7" />
@@ -172,7 +174,7 @@ export default function WishesSlide() {
             <div>
               {wishes.length === 0 ? (
                 <p className="text-gold/25 text-center font-serif text-sm py-4">
-                  Belum ada ucapan. Jadilah yang pertama!
+                  {t.wishes.emptyState}
                 </p>
               ) : (
                 sortedWishes.map((wish, idx) => (

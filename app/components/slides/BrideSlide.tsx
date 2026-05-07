@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
 import { useSlideContext } from "../SlideManager";
+import { useLanguage } from "../../context/LanguageContext";
 
 function InstagramIcon() {
   return (
@@ -18,6 +19,7 @@ function InstagramIcon() {
 
 export default function BrideSlide() {
   const { isActive } = useSlideContext();
+  const { t } = useLanguage();
 
   return (
     <SlideWrapper
@@ -36,7 +38,7 @@ export default function BrideSlide() {
       <div className="relative z-10 text-center max-w-sm mx-auto">
         <SlideReveal isActive={isActive}>
           <p className="text-gold/40 text-[9px] sm:text-[10px] tracking-[0.5em] uppercase font-sans mb-8 sm:mb-10">
-            The Bride
+            {t.bride.roleLabel}
           </p>
         </SlideReveal>
 
@@ -73,7 +75,7 @@ export default function BrideSlide() {
 
         <SlideReveal delay={0.25} isActive={isActive}>
           <p className="text-gold/50 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase font-sans mb-5">
-            Mempelai Wanita
+            {t.bride.role}
           </p>
         </SlideReveal>
 
@@ -89,7 +91,7 @@ export default function BrideSlide() {
         {/* Parents */}
         <SlideReveal delay={0.35} isActive={isActive}>
           <p className="font-serif text-gold-light/50 text-base sm:text-lg leading-relaxed mb-6">
-            Putri dari Bpk. Daniel Didik
+            {t.bride.daughterOf} Bpk. Daniel Didik
             <br />
             & Ibu Surya Ningrum
           </p>

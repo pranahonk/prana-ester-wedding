@@ -6,9 +6,11 @@ import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
 import Particles from "../Particles";
 import { useSlideContext } from "../SlideManager";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function RSVPSlide() {
   const { isActive } = useSlideContext();
+  const { t } = useLanguage();
   const [form, setForm] = useState({ name: "", eventType: "", phone: "", attendance: "", guests: "1" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -56,10 +58,10 @@ export default function RSVPSlide() {
         <SlideReveal isActive={isActive}>
           <div className="text-center mb-8">
             <p className="text-gold/35 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase font-sans mb-2">
-              RSVP
+              {t.rsvp.sectionLabel}
             </p>
             <h2 className="font-script text-3xl sm:text-4xl text-gold mb-1">
-              Konfirmasi Kehadiran
+              {t.rsvp.heading}
             </h2>
             <div className="flex items-center justify-center gap-3 mt-3">
               <div className="w-8 sm:w-14 h-px bg-gradient-to-r from-transparent to-gold/20" />
@@ -82,49 +84,49 @@ export default function RSVPSlide() {
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
-              <p className="font-script text-3xl text-gold mb-3">Terima Kasih!</p>
+              <p className="font-script text-3xl text-gold mb-3">{t.rsvp.successHeading}</p>
               <p className="font-serif text-gold-light/50 text-base">
-                Konfirmasi kehadiran Anda telah kami terima.
+                {t.rsvp.successMessage}
               </p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
-                  Nama Lengkap
+                  {t.rsvp.labelName}
                 </label>
                 <input
                   type="text"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full bg-white/[0.03] border border-gold/15 rounded-lg text-gold-light px-4 py-3 font-serif text-base focus:border-gold/40 focus:outline-none focus:bg-white/[0.05] transition-all placeholder:text-gold-light/20"
-                  placeholder="Masukkan nama lengkap"
+                  placeholder={t.rsvp.placeholderName}
                   required
                 />
               </div>
 
               <div>
                 <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
-                  No. WhatsApp
+                  {t.rsvp.labelPhone}
                 </label>
                 <input
                   type="tel"
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   className="w-full bg-white/[0.03] border border-gold/15 rounded-lg text-gold-light px-4 py-3 font-serif text-base focus:border-gold/40 focus:outline-none focus:bg-white/[0.05] transition-all placeholder:text-gold-light/20"
-                  placeholder="08xxxxxxxxxx"
+                  placeholder={t.rsvp.placeholderPhone}
                   required
                 />
               </div>
 
               <div>
                 <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
-                  Kehadiran
+                  {t.rsvp.labelAttendance}
                 </label>
                 <div className="flex gap-2">
                   {[
-                    { value: "yes", label: "Hadir" },
-                    { value: "no", label: "Tidak Hadir" },
+                    { value: "yes", label: t.rsvp.attendYes },
+                    { value: "no", label: t.rsvp.attendNo },
                   ].map((opt) => (
                     <motion.button
                       key={opt.value}
@@ -152,12 +154,12 @@ export default function RSVPSlide() {
                 >
                   <div>
                     <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
-                      Acara yang Dihadiri
+                      {t.rsvp.labelEventType}
                     </label>
                     <div className="flex gap-2 flex-wrap">
                       {[
-                        { value: "both", label: "Pemberkatan + Resepsi" },
-                        { value: "reception", label: "Resepsi Saja" },
+                        { value: "both", label: t.rsvp.eventBoth },
+                        { value: "reception", label: t.rsvp.eventReception },
                       ].map((opt) => (
                         <motion.button
                           key={opt.value}
@@ -178,7 +180,7 @@ export default function RSVPSlide() {
 
                   <div>
                     <label className="block text-gold/40 font-sans text-[10px] tracking-[0.3em] uppercase mb-2">
-                      Jumlah Tamu
+                      {t.rsvp.labelGuests}
                     </label>
                     <select
                       value={form.guests}
@@ -187,7 +189,7 @@ export default function RSVPSlide() {
                     >
                       {[1, 2, 3, 4, 5].map((n) => (
                         <option key={n} value={n} className="bg-navy-deep text-white">
-                          {n} orang
+                          {n} {t.rsvp.guestUnit}
                         </option>
                       ))}
                     </select>
@@ -201,12 +203,12 @@ export default function RSVPSlide() {
                 whileTap={{ scale: 0.98 }}
                 className="w-full py-3 bg-gradient-to-r from-gold to-gold-bright rounded-lg text-navy-deep font-sans text-[10px] sm:text-[11px] tracking-[0.3em] uppercase font-medium hover:shadow-[0_4px_20px_rgba(212,175,55,0.3)] transition-all duration-500 disabled:opacity-40 cursor-pointer"
               >
-                {status === "loading" ? "Mengirim..." : "Kirim RSVP"}
+                {status === "loading" ? t.rsvp.submitLoading : t.rsvp.submitButton}
               </motion.button>
 
               {status === "error" && (
                 <p className="text-red-400/80 text-center font-sans text-xs tracking-wider">
-                  Terjadi kesalahan. Silakan coba lagi.
+                  {t.rsvp.errorMessage}
                 </p>
               )}
             </form>

@@ -6,6 +6,7 @@ import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
 import Particles from "../Particles";
 import { useSlideContext } from "../SlideManager";
+import { useLanguage } from "../../context/LanguageContext";
 
 const WEDDING_DATE = new Date("2026-05-30T09:30:00+07:00").getTime();
 
@@ -55,6 +56,7 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
 
 export default function EventSlide() {
   const { isActive } = useSlideContext();
+  const { t } = useLanguage();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [mounted, setMounted] = useState(false);
 
@@ -93,10 +95,10 @@ export default function EventSlide() {
         <SlideReveal isActive={isActive}>
           <div className="text-center mb-6 sm:mb-8">
             <p className="text-gold/40 text-[9px] sm:text-[10px] tracking-[0.5em] uppercase font-sans mb-2">
-              Save The Date
+              {t.event.sectionLabel}
             </p>
             <h2 className="font-script text-3xl sm:text-4xl text-gold mb-1">
-              Acara Pernikahan
+              {t.event.heading}
             </h2>
             <div className="flex items-center justify-center gap-3 mt-3">
               <div className="w-10 sm:w-16 h-px bg-gradient-to-r from-transparent to-gold/20" />
@@ -111,22 +113,22 @@ export default function EventSlide() {
           <SlideReveal delay={0.1} isActive={isActive}>
             <div className="text-center mb-6 sm:mb-8">
               <p className="text-gold/35 text-[8px] sm:text-[9px] tracking-[0.3em] uppercase font-sans mb-3">
-                Menghitung Hari
+                {t.event.countdownLabel}
               </p>
               <div className="flex justify-center gap-1.5 sm:gap-3">
-                <TimeUnit value={timeLeft.days} label="Hari" />
+                <TimeUnit value={timeLeft.days} label={t.event.days} />
                 <div className="flex items-center pb-5">
                   <span className="text-gold/20 font-display text-base sm:text-lg">:</span>
                 </div>
-                <TimeUnit value={timeLeft.hours} label="Jam" />
+                <TimeUnit value={timeLeft.hours} label={t.event.hours} />
                 <div className="flex items-center pb-5">
                   <span className="text-gold/20 font-display text-base sm:text-lg">:</span>
                 </div>
-                <TimeUnit value={timeLeft.minutes} label="Menit" />
+                <TimeUnit value={timeLeft.minutes} label={t.event.minutes} />
                 <div className="flex items-center pb-5">
                   <span className="text-gold/20 font-display text-base sm:text-lg">:</span>
                 </div>
-                <TimeUnit value={timeLeft.seconds} label="Detik" />
+                <TimeUnit value={timeLeft.seconds} label={t.event.seconds} />
               </div>
             </div>
           </SlideReveal>
@@ -154,17 +156,17 @@ export default function EventSlide() {
               <circle cx="24" cy="8" r="1" fill="currentColor" opacity="0.4" />
               <circle cx="7" cy="10" r="0.8" fill="currentColor" opacity="0.3" />
             </svg>
-            <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">Resepsi</h3>
+            <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">{t.event.reception}</h3>
             <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">13:00 WIB</p>
             <p className="font-display text-sm sm:text-base text-gold-light font-medium">Roemah Kopi Sandjaja</p>
-            <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">Kelapa Gading, Jakarta Utara</p>
+            <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">{t.event.receptionLocation}</p>
             <a
               href="https://maps.app.goo.gl/hqueMQCEknq6c1RN8"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 mt-3 px-4 py-1.5 border border-gold/20 rounded-lg text-gold text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-sans hover:bg-gold/10 active:scale-[0.97] transition-all"
             >
-              <MapPinIcon /> Lihat Lokasi
+              <MapPinIcon /> {t.event.viewLocation}
             </a>
             <div className="mt-4 border border-gold/10 overflow-hidden rounded-lg">
               <iframe
@@ -175,7 +177,7 @@ export default function EventSlide() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Lokasi Resepsi"
+                title={t.event.receptionMapTitle}
               />
             </div>
           </div>
@@ -200,17 +202,17 @@ export default function EventSlide() {
               <rect x="6" y="18" width="20" height="12" rx="0.5" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
               <path d="M13 30 L13 23 Q16 20 19 23 L19 30" stroke="currentColor" strokeWidth="1" opacity="0.4" />
             </svg>
-            <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">Pemberkatan Nikah</h3>
+            <h3 className="font-script text-2xl sm:text-3xl text-gold mb-2">{t.event.ceremony}</h3>
             <p className="font-display text-base sm:text-lg text-gold-light/70 tracking-wider mb-2">09:30 WIB</p>
             <p className="font-display text-sm sm:text-base text-gold-light font-medium">GMS Kelapa Gading</p>
-            <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">Kelapa Gading, Jakarta Utara</p>
+            <p className="text-gold-light/35 font-sans text-[10px] sm:text-xs tracking-wider mt-1">{t.event.ceremonyLocation}</p>
             <a
               href="https://maps.google.com/?q=GMS+Kelapa+Gading+Jakarta"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 mt-3 px-4 py-1.5 border border-gold/20 rounded-lg text-gold text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-sans hover:bg-gold/10 active:scale-[0.97] transition-all"
             >
-              <MapPinIcon /> Lihat Lokasi
+              <MapPinIcon /> {t.event.viewLocation}
             </a>
             <div className="mt-4 border border-gold/10 overflow-hidden rounded-lg">
               <iframe
@@ -221,7 +223,7 @@ export default function EventSlide() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Lokasi Pemberkatan Nikah"
+                title={t.event.ceremonyMapTitle}
               />
             </div>
           </div>

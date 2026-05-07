@@ -6,6 +6,7 @@ import Image from "next/image";
 import SlideWrapper from "./SlideWrapper";
 import SlideReveal from "../SlideReveal";
 import { useSlideContext } from "../SlideManager";
+import { useLanguage } from "../../context/LanguageContext";
 
 function CopyIcon() {
   return (
@@ -34,6 +35,7 @@ function BankCard({
   delay: number;
 }) {
   const { isActive } = useSlideContext();
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
 
   function handleCopy() {
@@ -69,7 +71,7 @@ function BankCard({
           }`}
         >
           {copied ? <CheckIcon /> : <CopyIcon />}
-          {copied ? "Tersalin!" : "Salin Nomor"}
+          {copied ? t.gift.copiedButton : t.gift.copyButton}
         </motion.button>
 
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
@@ -101,6 +103,7 @@ function ZoomIcon() {
 
 export default function GiftSlide() {
   const { isActive } = useSlideContext();
+  const { t } = useLanguage();
   const [qrisZoomed, setQrisZoomed] = useState(false);
 
   const handleDownloadQris = useCallback(() => {
@@ -132,10 +135,10 @@ export default function GiftSlide() {
               <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
             </svg>
             <p className="text-gold/35 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase font-sans mb-2">
-              Love Gift
+              {t.gift.sectionLabel}
             </p>
             <h2 className="font-script text-3xl sm:text-4xl text-gold mb-1">
-              Wedding Gift
+              {t.gift.heading}
             </h2>
             <div className="flex items-center justify-center gap-3 mt-3">
               <div className="w-8 sm:w-14 h-px bg-gradient-to-r from-transparent to-gold/20" />
@@ -147,10 +150,10 @@ export default function GiftSlide() {
 
         <SlideReveal delay={0.1} isActive={isActive}>
           <p className="font-serif text-center text-gold-light/50 mb-1.5 text-sm sm:text-base max-w-sm mx-auto leading-relaxed">
-            Doa restu Anda merupakan karunia yang sangat berarti bagi kami.
+            {t.gift.description}
           </p>
           <p className="font-serif text-center text-gold-light/30 mb-8 text-sm">
-            Namun jika Anda ingin memberikan tanda kasih:
+            {t.gift.descriptionSub}
           </p>
         </SlideReveal>
 
@@ -186,14 +189,14 @@ export default function GiftSlide() {
                   whileTap={{ scale: 0.97 }}
                   className="inline-flex items-center gap-2 px-4 py-2 border border-gold/30 rounded-lg text-[10px] font-sans tracking-[0.15em] uppercase cursor-pointer text-gold hover:border-gold hover:bg-gold/5 transition-all"
                 >
-                  <ZoomIcon /> Perbesar
+                  <ZoomIcon /> {t.gift.zoomButton}
                 </motion.button>
                 <motion.button
                   onClick={handleDownloadQris}
                   whileTap={{ scale: 0.97 }}
                   className="inline-flex items-center gap-2 px-4 py-2 border border-gold/30 rounded-lg text-[10px] font-sans tracking-[0.15em] uppercase cursor-pointer text-gold hover:border-gold hover:bg-gold/5 transition-all"
                 >
-                  <DownloadIcon /> Simpan
+                  <DownloadIcon /> {t.gift.saveButton}
                 </motion.button>
               </div>
 
@@ -260,7 +263,7 @@ export default function GiftSlide() {
               whileTap={{ scale: 0.97 }}
               className="mt-4 inline-flex items-center gap-2 px-6 py-2.5 border border-gold/30 rounded-lg text-[10px] font-sans tracking-[0.15em] uppercase cursor-pointer text-gold hover:border-gold hover:bg-gold/5 transition-all"
             >
-              <DownloadIcon /> Simpan QRIS
+              <DownloadIcon /> {t.gift.saveQrisButton}
             </motion.button>
           </motion.div>
         )}
