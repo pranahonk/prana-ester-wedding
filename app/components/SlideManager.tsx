@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import useSwipeGesture from "../hooks/useSwipeGesture";
 import BottomNav from "./BottomNav";
 import MusicPlayer from "./MusicPlayer";
+import LanguageSwitcher from "./LanguageSwitcher";
 import CoverSlide from "./slides/CoverSlide";
 import GreetingSlide from "./slides/GreetingSlide";
 import GroomSlide from "./slides/GroomSlide";
@@ -171,6 +172,7 @@ export default function SlideManager({ guestName }: { guestName: string }) {
       </AnimatePresence>
 
       <MusicPlayer shouldPlay={isOpen} />
+      <LanguageSwitcher />
 
       <BottomNav
         currentSlide={currentSlide}

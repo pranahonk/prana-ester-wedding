@@ -3,12 +3,17 @@
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import SlideManager from "./components/SlideManager";
+import { LanguageProvider } from "./context/LanguageContext";
 
 function WeddingContent() {
   const searchParams = useSearchParams();
   const guestName = searchParams.get("to")?.replace(/\+/g, " ") || "";
 
-  return <SlideManager guestName={guestName} />;
+  return (
+    <LanguageProvider>
+      <SlideManager guestName={guestName} />
+    </LanguageProvider>
+  );
 }
 
 export default function Home() {
