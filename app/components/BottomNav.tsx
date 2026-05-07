@@ -5,8 +5,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
-const NAV_ITEMS_STATIC: { key: string; slide?: number; href?: string; icon: React.ReactNode }[] = [
+type NavKey = keyof typeof translations.id.nav;
+
+const NAV_ITEMS_STATIC: { key: NavKey; slide?: number; href?: string; icon: React.ReactNode }[] = [
   {
     key: "opening",
     slide: 1,
@@ -138,7 +141,7 @@ export default function BottomNav({
 
   const NAV_ITEMS = NAV_ITEMS_STATIC.map((item) => ({
     ...item,
-    label: t.nav[item.key as keyof typeof t.nav],
+    label: t.nav[item.key],
   }));
 
   // Find which nav item is closest active match (for slide-based items)
@@ -229,7 +232,7 @@ export default function BottomNav({
 
           return (
             <li
-              key={item.label}
+              key={item.key}
               className="nav-item flex-none"
               style={{ width: 76, minWidth: 72, maxWidth: 88 }}
             >

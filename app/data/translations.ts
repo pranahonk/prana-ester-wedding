@@ -8,12 +8,16 @@ export const translations = {
       roleLabel: "The Bride",
       role: "Mempelai Wanita",
       daughterOf: "Putri dari",
+      honorifMr: "Bpk.",
+      honorifMrs: "Ibu",
     },
 
     groom: {
       roleLabel: "The Groom",
       role: "Mempelai Pria",
       sonOf: "Putra dari",
+      honorifMr: "Bpk.",
+      honorifMrs: "Ibu",
     },
 
     event: {
@@ -123,12 +127,16 @@ export const translations = {
       roleLabel: "The Bride",
       role: "The Bride",
       daughterOf: "Daughter of",
+      honorifMr: "Mr.",
+      honorifMrs: "Mrs.",
     },
 
     groom: {
       roleLabel: "The Groom",
       role: "The Groom",
       sonOf: "Son of",
+      honorifMr: "Mr.",
+      honorifMrs: "Mrs.",
     },
 
     event: {
@@ -231,8 +239,3 @@ export const translations = {
 
 export type Translations = typeof translations;
 export type Language = "id" | "en";
-
-// Compile-time check: ensures id and en have identical keys (structural shape)
-// This line will cause a TypeScript error if they diverge
-type DeepStringify<T> = { [K in keyof T]: T[K] extends object ? DeepStringify<T[K]> : string };
-export const _typeCheck: Record<Language, DeepStringify<typeof translations.id>> = translations as never;

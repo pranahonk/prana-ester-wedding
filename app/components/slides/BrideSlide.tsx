@@ -91,9 +91,9 @@ export default function BrideSlide() {
         {/* Parents */}
         <SlideReveal delay={0.35} isActive={isActive}>
           <p className="font-serif text-gold-light/50 text-base sm:text-lg leading-relaxed mb-6">
-            {t.bride.daughterOf} Bpk. Daniel Didik
+            {t.bride.daughterOf} {t.bride.honorifMr} Daniel Didik
             <br />
-            & Ibu Surya Ningrum
+            & {t.bride.honorifMrs} Surya Ningrum
           </p>
         </SlideReveal>
 

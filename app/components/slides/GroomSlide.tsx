@@ -91,9 +91,9 @@ export default function GroomSlide() {
         {/* Parents */}
         <SlideReveal delay={0.35} isActive={isActive}>
           <p className="font-serif text-gold-light/50 text-base sm:text-lg leading-relaxed mb-6">
-            {t.groom.sonOf} Bpk. Kiki Winoto
+            {t.groom.sonOf} {t.groom.honorifMr} Kiki Winoto
             <br />
-            & Ibu Cholipah
+            & {t.groom.honorifMrs} Cholipah
           </p>
         </SlideReveal>
 
