@@ -114,8 +114,8 @@ export const translations = {
 
     nav: {
       opening: "Pembuka",
-      groom: "Mempelai Pria",
-      bride: "Mempelai Wanita",
+      groom: "Pria",
+      bride: "Wanita",
       verse: "Ayat",
       event: "Acara",
       rsvp: "RSVP",
