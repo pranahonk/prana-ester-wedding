@@ -1,7 +1,12 @@
 export const translations = {
   id: {
+    cover: {
+      weddingOf: "Pernikahan",
+      openInvitation: "Buka Undangan",
+    },
+
     greeting: {
-      tagline: "Together with their families",
+      tagline: "Bersama dengan keluarga mereka",
     },
 
     bride: {
@@ -89,36 +94,45 @@ export const translations = {
     },
 
     story: {
-      sectionLabel: "Our Journey",
-      heading: "Our Story",
-      subtitle: "A Journey of Love",
+      sectionLabel: "Kisah Kami",
+      heading: "Perjalanan Kita",
+      subtitle: "Sebuah Perjalanan Cinta",
     },
 
     closing: {
       thankYou: "Terima Kasih",
+      secondaryVerse: "\"Dan sekarang tinggal tiga hal ini, yaitu iman, pengharapan dan kasih. Dan yang paling besar di antaranya ialah kasih.\"",
+      secondaryVerseRef: "1 Korintus 13 : 13",
     },
 
     verse: {
       reference: "Markus 10:9",
       source: "Alkitab · Injil Markus",
+      verseBody1: "Demikianlah mereka bukan lagi dua, melainkan satu.",
+      verseBody2: "Karena itu, apa yang telah dipersatukan Allah, tidak boleh diceraikan manusia.",
     },
 
     nav: {
-      opening: "Opening",
-      groom: "Groom",
-      bride: "Bride",
+      opening: "Pembuka",
+      groom: "Mempelai Pria",
+      bride: "Mempelai Wanita",
       verse: "Ayat",
       event: "Acara",
       rsvp: "RSVP",
       wishes: "Ucapan",
-      gift: "Gift",
-      gallery: "Gallery",
-      story: "Story",
-      thanks: "Thanks",
+      gift: "Hadiah",
+      gallery: "Galeri",
+      story: "Kisah",
+      thanks: "Terima Kasih",
     },
   },
 
   en: {
+    cover: {
+      weddingOf: "The Wedding of",
+      openInvitation: "Open Invitation",
+    },
+
     greeting: {
       tagline: "Together with their families",
     },
@@ -214,11 +228,15 @@ export const translations = {
 
     closing: {
       thankYou: "Thank You",
+      secondaryVerse: "\"And now these three remain: faith, hope and love. But the greatest of these is love.\"",
+      secondaryVerseRef: "1 Corinthians 13:13",
     },
 
     verse: {
       reference: "Mark 10:9",
       source: "Bible · Gospel of Mark",
+      verseBody1: "So they are no longer two, but one flesh.",
+      verseBody2: "Therefore what God has joined together, let no one separate.",
     },
 
     nav: {

@@ -113,12 +113,10 @@ export default function ClosingSlide() {
               </svg>
             </div>
             <p className="font-serif text-gold-light/60 text-[13px] sm:text-base italic leading-[2]">
-              &ldquo;Dan sekarang tinggal tiga hal ini, yaitu iman, pengharapan dan kasih.
-              <br />
-              Dan yang paling besar di antaranya ialah kasih.&rdquo;
+              {t.closing.secondaryVerse}
             </p>
             <p className="font-display text-gold/40 text-[10px] sm:text-[11px] tracking-[0.3em] mt-4 uppercase">
-              1 Korintus 13 : 13
+              {t.closing.secondaryVerseRef}
             </p>
           </div>
         </SlideReveal>

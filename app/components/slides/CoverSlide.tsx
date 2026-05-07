@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import SlideWrapper from "./SlideWrapper";
 import Particles from "../Particles";
+import { useLanguage } from "../../context/LanguageContext";
 
 function Flourish({ className }: { className?: string }) {
   return (
@@ -33,6 +34,7 @@ export default function CoverSlide({
   guestName: string;
   onOpen: () => void;
 }) {
+  const { t } = useLanguage();
   return (
     <SlideWrapper padding="" className="flex flex-col items-center justify-center">
       {/* Photo background */}
@@ -115,7 +117,7 @@ export default function CoverSlide({
           transition={{ delay: 0.6, duration: 1.5 }}
           className="text-gold-light/40 text-[10px] sm:text-xs uppercase font-sans mb-5 sm:mb-8"
         >
-          The Wedding of
+          {t.cover.weddingOf}
         </motion.p>
 
         <motion.h1
@@ -230,7 +232,7 @@ export default function CoverSlide({
               </motion.span>
 
               <span className="relative tracking-[0.3em] uppercase text-[10px] sm:text-[11px] font-sans text-gold font-medium">
-                Buka Undangan
+                {t.cover.openInvitation}
               </span>
             </span>
           </motion.button>

@@ -91,19 +91,10 @@ export default function VerseSlide() {
 
             <blockquote>
               <p className="font-serif text-xl sm:text-[1.65rem] md:text-[1.85rem] leading-[2] sm:leading-[1.95] text-gold-light/80 italic">
-                Demikianlah mereka bukan lagi dua,
-                <br className="hidden sm:block" />
-                {" "}melainkan{" "}
-                <span className="relative not-italic font-semibold text-gold-light/95">
-                  satu
-                  <span className="absolute -bottom-0.5 left-0 right-0 h-px bg-gold/40" />
-                </span>
-                .
+                {t.verse.verseBody1}
               </p>
               <p className="font-serif text-lg sm:text-[1.45rem] md:text-[1.6rem] leading-[2] sm:leading-[1.95] text-gold-light/40 italic mt-4 sm:mt-5">
-                Karena itu, apa yang telah dipersatukan Allah,
-                <br className="hidden sm:block" />
-                tidak boleh diceraikan manusia.
+                {t.verse.verseBody2}
               </p>
             </blockquote>
 
