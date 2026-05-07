@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import Timeline from "./components/Timeline";
 import { timelineData } from "@/app/data/timelineData";
 import Link from "next/link";
+import { LanguageProvider } from "@/app/context/LanguageContext";
 
 export default function StoryPage() {
   return (
+    <LanguageProvider>
     <div
       className="min-h-screen py-12 sm:py-16 md:py-20 px-4"
       style={{
@@ -71,5 +73,6 @@ export default function StoryPage() {
         </div>
       </motion.div>
     </div>
+    </LanguageProvider>
   );
 }

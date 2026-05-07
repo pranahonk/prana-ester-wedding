@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { TimelineMilestone } from "@/app/data/timelineData";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 interface TimelineCardProps {
   milestone: TimelineMilestone;
@@ -15,6 +16,7 @@ export default function TimelineCard({
   isActive,
   isLeft = false,
 }: TimelineCardProps) {
+  const { lang } = useLanguage();
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -40,7 +42,7 @@ export default function TimelineCard({
               {milestone.date}
             </p>
             <h3 className="font-script text-2xl md:text-3xl text-gold mt-1">
-              {milestone.title}
+              {milestone.title[lang]}
             </h3>
           </div>
 
@@ -54,7 +56,7 @@ export default function TimelineCard({
           <div className="relative w-full h-56 sm:h-64 md:h-72 mb-4 rounded-lg overflow-hidden">
             <Image
               src={milestone.photo}
-              alt={milestone.title}
+              alt={milestone.title[lang]}
               fill
               className="object-cover"
               sizes="(max-width: 640px) 100vw, 50vw"
@@ -65,7 +67,7 @@ export default function TimelineCard({
 
           {/* Description text */}
           <p className="text-white/80 text-sm leading-relaxed font-sans">
-            {milestone.description}
+            {milestone.description[lang]}
           </p>
         </div>
       </div>
