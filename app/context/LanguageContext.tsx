@@ -1,9 +1,9 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { translations, Language, Translations } from '../data/translations';
+import { translations, Language } from '../data/translations';
 
-type TranslationShape = Translations[Language];
+type TranslationShape = typeof translations['id'];
 
 interface LanguageContextValue {
   lang: Language;
@@ -11,11 +11,7 @@ interface LanguageContextValue {
   setLang: (lang: Language) => void;
 }
 
-const LanguageContext = createContext<LanguageContextValue>({
-  lang: 'id',
-  t: translations['id'],
-  setLang: () => {},
-});
+const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>('id');
@@ -40,5 +36,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useLanguage(): LanguageContextValue {
-  return useContext(LanguageContext);
+  const ctx = useContext(LanguageContext);
+  if (!ctx) throw new Error('useLanguage must be used within <LanguageProvider>');
+  return ctx;
 }
