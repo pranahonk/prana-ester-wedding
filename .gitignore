@@ -57,3 +57,6 @@ next-env.d.ts
 .gitkeep
 .worktrees/
 .env*.local
+
+# scripts dependencies
+scripts/node_modules/
