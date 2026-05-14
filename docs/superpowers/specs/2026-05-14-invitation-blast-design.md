@@ -49,7 +49,7 @@ Add one `Phone` column to the existing guest sheet, between `Description` and `R
 - `RSVP Sent = FALSE` = not yet sent; script sets it to `TRUE` after sending
 - Rows with empty `Phone` are skipped with a warning
 
-The sheet has two guest tabs (Prana's and Ester's). The script reads both tabs.
+The guest list is on a single tab named `Prana`. The script reads this tab only.
 
 ---
 
@@ -111,12 +111,9 @@ on:
 
 The script reads the header row to find column positions dynamically — column order changes won't break it.
 
-### Guest tab names
+### Guest tab name
 
-- `Prana` — Prana's guest tab
-- `Ester` — Ester's guest tab
-
-Tab names must match exactly.
+`Prana` — must match exactly.
 
 ### Honorific logic
 
