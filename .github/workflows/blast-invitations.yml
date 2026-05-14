@@ -1,0 +1,43 @@
+name: Blast Invitations
+
+on:
+  workflow_dispatch:
+    inputs:
+      group:
+        description: 'Guest group to send to'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - red
+          - yellow
+          - green
+      dry_run:
+        description: 'Dry run — print messages but do NOT send'
+        type: boolean
+        default: true
+
+jobs:
+  blast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install blast dependencies
+        run: npm install
+        working-directory: scripts
+
+      - name: Run blast script
+        working-directory: scripts
+        env:
+          FONNTE_TOKEN: ${{ secrets.FONNTE_TOKEN }}
+          GOOGLE_SHEETS_CREDS: ${{ secrets.GOOGLE_SHEETS_CREDS }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+          GROUP: ${{ inputs.group }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: node blast.js
