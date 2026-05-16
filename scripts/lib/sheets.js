@@ -8,19 +8,30 @@ export function findColumn(headers, name) {
   return idx;
 }
 
+function normalizePhone(raw) {
+  if (!raw) return '';
+  // Strip Unicode directional/invisible chars
+  let p = raw.replace(/[‪‫‬‭‮​‌‍﻿\s]/g, '');
+  // Strip dashes (regular, non-breaking ‑, en –, em —, figure ‒)
+  p = p.replace(/[-‑‒–—]/g, '');
+  if (p.startsWith('0')) return '+62' + p.slice(1);
+  if (p.startsWith('62') && !p.startsWith('+')) return '+' + p;
+  return p;
+}
+
 export function parseGuests(headers, rows) {
   const nameCol       = findColumn(headers, 'Name');
   const importanceCol = findColumn(headers, 'Importance');
-  const phoneCol      = findColumn(headers, 'Phone');
+  const phoneCol      = findColumn(headers, 'Phone number');
   const rsvpCol       = findColumn(headers, 'RSVP Sent');
 
   return rows
     .map((row, i) => ({
       name:       (row[nameCol]       || '').trim(),
       importance: (row[importanceCol] || '').trim(),
-      phone:      (row[phoneCol]      || '').trim(),
+      phone:      normalizePhone(row[phoneCol] || ''),
       rsvpSent:   (row[rsvpCol]       || '').trim().toUpperCase() === 'TRUE',
-      rowIndex:   i + 2, // header = row 1, first data row = row 2
+      rowIndex:   i + 2,
     }))
     .filter(g => g.name && g.phone && !g.rsvpSent);
 }
@@ -55,7 +66,7 @@ export async function markSent(auth, spreadsheetId, rowIndex) {
   await sheets.spreadsheets.values.update({
     spreadsheetId,
     range: `${SHEET_TAB}!${colLetter}${rowIndex}`,
-    valueInputOption: 'RAW',
+    valueInputOption: 'USER_ENTERED',
     requestBody: { values: [['TRUE']] },
   });
 }

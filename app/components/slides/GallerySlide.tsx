@@ -9,7 +9,7 @@ import { useSlideContext } from "../SlideManager";
 
 const PHOTOS = [
   "DSC00106", "DSC00111", "DSC00136", "DSC00149", "DSC00167", "DSC00172",
-  "DSC00194", "DSC00198", "DSC00204",
+  "DSC00194", "DSC00185", "DSC00204",
   "DSC00217", "DSC00215", "DSC00328",
   "DSC00377", "DSC00374",
 ].map((name, i) => ({

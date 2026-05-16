@@ -18,24 +18,38 @@ export function extractHonorific(name) {
 }
 
 export function buildMessage(name) {
-  const { honorific, firstName } = extractHonorific(name);
-  const greeting = honorific ? `${honorific} ${firstName}` : firstName;
   const encodedName = name.trim().replace(/\s+/g, '+');
   return [
-    `Halo ${greeting}! 👋`,
+    'Kepada Yth.',
+    'Bapak/Ibu/Saudara/i',
+    `*${name.trim()}*`,
+    'di tempat',
     '',
-    `Kami, Prana & Ester, dengan penuh sukacita mengundang ${greeting}`,
-    `ke hari istimewa kami. 🎊`,
+    'Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami:',
     '',
-    `📅 Sabtu, 30 Mei 2026`,
-    `📍 GMS Kelapa Gading, Jakarta`,
+    '🤵🏻 : *Prana Apsara Wijaya*',
+    'dengan',
+    '👰🏼‍♀️ : *Ester Siwi Prihardani*',
     '',
-    `Lihat undangan lengkapnya di sini:`,
-    `👉 https://pranaester.com/?to=${encodedName}`,
+    `🔗 https://www.pranaester.com/?to=${encodedName}`,
     '',
-    `Mohon konfirmasi kehadiran melalui link di atas.`,
-    `Kami sangat berharap dapat merayakannya bersama ${greeting}! 🙏`,
+    'yang akan dilaksanakan pada :',
     '',
-    `– Prana & Ester`,
+    '*📍 PEMBERKATAN NIKAH*',
+    '🗓️ *Sabtu, 30 Mei 2026 ~ 09:30 WIB*',
+    '📍 *GMS Kelapa Gading*',
+    '    Jl. Kelapa Gading, Jakarta Utara',
+    '📍 https://www.google.com/maps/search/GMS+Kelapa+Gading+Jakarta+Utara',
+    '',
+    '*🍽️ RESEPSI*',
+    '🗓️ *Sabtu, 30 Mei 2026 ~ 13:00 WIB*',
+    '📍 *Roemah Kopi Sandjaja*',
+    '    Jl. Kelapa Gading, Jakarta Utara',
+    '📍 https://www.google.com/maps/search/Roemah+Kopi+Sandjaja+Kelapa+Gading',
+    '',
+    'Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kami.',
+    '',
+    'Kami yang berbahagia,',
+    'Prana & Ester',
   ].join('\n');
 }

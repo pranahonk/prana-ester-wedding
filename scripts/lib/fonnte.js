@@ -17,9 +17,9 @@ export async function sendWhatsApp(token, phone, message, dryRun) {
     body: JSON.stringify({ target: phone, message, countryCode: '62' }),
   });
 
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Fonnte error ${res.status}: ${text}`);
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok || body.status === false) {
+    throw new Error(`Fonnte error: ${body.reason ?? body.message ?? res.status}`);
   }
 
   return { sent: true, dryRun: false };

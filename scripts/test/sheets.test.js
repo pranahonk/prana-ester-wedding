@@ -18,7 +18,7 @@ test('findColumn throws when column missing', () => {
 });
 
 test('parseGuests skips rows with empty Name', () => {
-  const headers = ['Name', 'Importance', 'Phone', 'RSVP Sent'];
+  const headers = ['Name', 'Importance', 'Phone number', 'RSVP Sent'];
   const rows = [
     ['Billy Gunawan', 'Green', '+6285777224040', 'FALSE'],
     ['', 'Green', '+628111', 'FALSE'],
@@ -29,7 +29,7 @@ test('parseGuests skips rows with empty Name', () => {
 });
 
 test('parseGuests skips rows with empty Phone', () => {
-  const headers = ['Name', 'Importance', 'Phone', 'RSVP Sent'];
+  const headers = ['Name', 'Importance', 'Phone number', 'RSVP Sent'];
   const rows = [
     ['Billy Gunawan', 'Green', '', 'FALSE'],
     ['Ko Randy', 'Yellow', '+6281234567890', 'FALSE'],
@@ -40,7 +40,7 @@ test('parseGuests skips rows with empty Phone', () => {
 });
 
 test('parseGuests skips rows where RSVP Sent is TRUE', () => {
-  const headers = ['Name', 'Importance', 'Phone', 'RSVP Sent'];
+  const headers = ['Name', 'Importance', 'Phone number', 'RSVP Sent'];
   const rows = [
     ['Billy Gunawan', 'Green', '+6285777224040', 'TRUE'],
     ['Ko Randy', 'Yellow', '+6281234567890', 'FALSE'],
@@ -51,7 +51,7 @@ test('parseGuests skips rows where RSVP Sent is TRUE', () => {
 });
 
 test('parseGuests includes correct rowIndex (1-based, header = row 1)', () => {
-  const headers = ['Name', 'Importance', 'Phone', 'RSVP Sent'];
+  const headers = ['Name', 'Importance', 'Phone number', 'RSVP Sent'];
   const rows = [
     ['Billy Gunawan', 'Green', '+6285777224040', 'FALSE'],
   ];

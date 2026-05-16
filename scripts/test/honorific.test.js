@@ -70,16 +70,18 @@ test('single word name with no prefix', () => {
 
 test('buildMessage contains personalized link', () => {
   const msg = buildMessage('Billy Gunawan');
-  assert.ok(msg.includes('pranaester.com/?to=Billy+Gunawan'), 'link missing');
+  assert.ok(msg.includes('https://www.pranaester.com/?to=Billy+Gunawan'), 'link missing');
 });
 
-test('buildMessage with Ko honorific uses Ko in greeting', () => {
+test('buildMessage contains guest name in bold', () => {
+  const msg = buildMessage('Merry Purnama');
+  assert.ok(msg.includes('*Merry Purnama*'), 'bold name missing');
+});
+
+test('buildMessage contains formal header and event details', () => {
   const msg = buildMessage('Ko Randy');
-  assert.ok(msg.includes('Halo Ko Randy'), 'greeting missing');
-  assert.ok(msg.includes('pranaester.com/?to=Ko+Randy'), 'link missing');
-});
-
-test('buildMessage with no honorific uses first name', () => {
-  const msg = buildMessage('Billy Gunawan');
-  assert.ok(msg.includes('Halo Billy'), 'greeting missing');
+  assert.ok(msg.includes('Kepada Yth.'), 'header missing');
+  assert.ok(msg.includes('https://www.pranaester.com/?to=Ko+Randy'), 'link missing');
+  assert.ok(msg.includes('PEMBERKATAN NIKAH'), 'ceremony missing');
+  assert.ok(msg.includes('RESEPSI'), 'reception missing');
 });
